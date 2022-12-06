@@ -1,0 +1,28 @@
+.card {
+  /* border: thin solid black; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.4em;
+  border-radius: 1em;
+  box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.529);
+}
+
+img {
+  width: 30%;
+  align-self: center;
+}
+
+.title {
+  margin: 0.5em 0;
+}
+
+.btn {
+  border: none;
+  font-size: x-large;
+  padding: 0.6em;
+  cursor: pointer;
+  border-radius: 0.4em;
+  color: whitesmoke;
+  background-color: brown;
+}

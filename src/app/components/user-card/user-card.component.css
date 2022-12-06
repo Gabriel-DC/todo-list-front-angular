@@ -1,0 +1,26 @@
+.user-card {
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 1em;
+  border-radius: 0.4em;
+  box-shadow: 2px 2px 4px 3px rgba(0, 0, 0, 0.348);
+}
+
+.user-image {
+  user-select: none;
+  border-radius: 100%;
+  width: 10%;
+}
+
+.username {
+  margin-left: 0.5em;
+}
+
+small {
+  margin-left: auto;
+  justify-self: flex-end;
+  color: brown;
+  cursor: pointer;
+}
