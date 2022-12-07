@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { TodoModel } from './models/todo';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +10,7 @@ export class TodoService {
 
   constructor(private http: HttpClient) {}
 
-  public composeHeaders(token: any) {
+  public composeHeaders(token: string) {
     if (token) {
       const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
       return headers;
@@ -18,31 +19,39 @@ export class TodoService {
     return new HttpHeaders();
   }
 
-  public getTodayTodos(token: any) {
-    return this.http.get(`${this.baseUrl}/v1/todos/undone/today`, {
+  public getTodayTodos(token: string) {
+    debugger;
+    let date: string = new Date(
+      new Date().toLocaleDateString('en-US', { timeZone: 'America/Sao_Paulo' })
+    )
+      .toISOString()
+      .split('T')[0];
+    //('America/Sao_Paulo');
+    //let date: string = new Date().toISOString().split('T')[0];
+    return this.http.get<TodoModel[]>(`${this.baseUrl}/v1/todo/date/${date}`, {
       headers: this.composeHeaders(token),
     });
   }
 
-  public getTomorrowTodos(token: any) {
+  public getTomorrowTodos(token: string) {
     return this.http.get(`${this.baseUrl}/v1/todos/undone/tomorrow`, {
       headers: this.composeHeaders(token),
     });
   }
 
-  public getAllTodos(token: any) {
+  public getAllTodos(token: string) {
     return this.http.get(`${this.baseUrl}/v1/todos`, {
       headers: this.composeHeaders(token),
     });
   }
 
-  public postTodo(data: any, token: any) {
+  public postTodo(data: any, token: string) {
     return this.http.post(`${this.baseUrl}/v1/todos`, data, {
       headers: this.composeHeaders(token),
     });
   }
 
-  public markAsDone(data: { id: any }, token: string | null) {
+  public markAsDone(data: { id: any }, token: string) {
     return this.http.put(`${this.baseUrl}/v1/todos/mark-as-done`, data, {
       headers: this.composeHeaders(token),
     });
