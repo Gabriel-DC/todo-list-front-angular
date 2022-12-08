@@ -1,3 +1,11 @@
-<div *ngFor="let todo of todos">
-  <h2>{{ todo.title }}</h2>
+<div class="todo-item" *ngFor="let todo of todos">
+  <input
+    (change)="onCheckChange(todo)"
+    [(ngModel)]="todo.done"
+    type="checkbox"
+    name=""
+    id=""
+  />
+  <h4 class="todo-title">{{ todo.title }}</h4>
+  <small class="todo-date">{{ todo.date.toISOString() }}</small>
 </div>

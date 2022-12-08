@@ -26,8 +26,7 @@ export class TodoService {
     )
       .toISOString()
       .split('T')[0];
-    //('America/Sao_Paulo');
-    //let date: string = new Date().toISOString().split('T')[0];
+
     return this.http.get<TodoModel[]>(`${this.baseUrl}/v1/todo/date/${date}`, {
       headers: this.composeHeaders(token),
     });

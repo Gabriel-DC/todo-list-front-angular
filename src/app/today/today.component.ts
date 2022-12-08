@@ -25,4 +25,9 @@ export class TodayComponent implements OnInit {
       });
     });
   }
+
+  onCheckChange(todo: TodoModel) {
+    //TO DO
+    // JOKES LMAO
+  }
 }
