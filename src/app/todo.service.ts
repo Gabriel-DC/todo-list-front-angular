@@ -20,7 +20,6 @@ export class TodoService {
   }
 
   public getTodayTodos(token: string) {
-    debugger;
     let date: string = new Date(
       new Date().toLocaleDateString('en-US', { timeZone: 'America/Sao_Paulo' })
     )
@@ -50,8 +49,14 @@ export class TodoService {
     });
   }
 
-  public markAsDone(data: { id: any }, token: string) {
-    return this.http.put(`${this.baseUrl}/v1/todos/mark-as-done`, data, {
+  public markAsDone(data: { id: string }, token: string) {
+    return this.http.put(`${this.baseUrl}/v1/todo/mark-as-done`, data, {
+      headers: this.composeHeaders(token),
+    });
+  }
+
+  public markAsUndone(data: { id: string }, token: string) {
+    return this.http.patch(`${this.baseUrl}/v1/todo/mark-as-done`, data, {
       headers: this.composeHeaders(token),
     });
   }

@@ -12,3 +12,9 @@
   margin-right: auto;
   margin-left: 0.2em;
 }
+
+.done {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+

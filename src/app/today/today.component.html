@@ -2,10 +2,11 @@
   <input
     (change)="onCheckChange(todo)"
     [(ngModel)]="todo.done"
+    [disabled]="isLoading"
     type="checkbox"
-    name=""
-    id=""
+    name="done"
+    id="doneInput_{{ todo.id }}"
   />
-  <h4 class="todo-title">{{ todo.title }}</h4>
-  <small class="todo-date">{{ todo.date.toISOString() }}</small>
+  <h4 [ngClass]="{ done: todo.done }" class="todo-title">{{ todo.title }}</h4>
+  <small class="todo-date">{{ todo.date | date : "dd/MM/yyyy H:mm:ss" }}</small>
 </div>

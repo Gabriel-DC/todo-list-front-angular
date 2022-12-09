@@ -14,7 +14,7 @@ export class TodayComponent implements OnInit {
     private afAuth: AngularFireAuth
   ) {}
 
-  public todos: TodoModel[] = [];
+  public isLoading = false;
 
   ngOnInit(): void {
     this.afAuth.idToken.subscribe((token: any) => {
@@ -26,8 +26,37 @@ export class TodayComponent implements OnInit {
     });
   }
 
+  markAsDone(todo: TodoModel) {
+    this.afAuth.idToken.subscribe((token) => {
+      const data = { id: todo.id };
+      if (token)
+        this.todoService.markAsDone(data, token).subscribe(
+          (res) => {
+            todo.done = true;
+          },
+          (err) => (todo.done = false)
+        );
+    });
+  }
+
+  markAsUndone(todo: TodoModel) {
+    this.afAuth.idToken.subscribe((token) => {
+      const data = { id: todo.id };
+      if (token)
+        this.todoService.markAsUndone(data, token).subscribe(
+          (res) => {
+            todo.done = false;
+          },
+          (err) => (todo.done = true)
+        );
+    });
+  }
+
   onCheckChange(todo: TodoModel) {
-    //TO DO
-    // JOKES LMAO
+    this.isLoading = true;
+    console.log(todo.done);
+    if (todo.done) this.markAsDone(todo);
+    else this.markAsUndone(todo);
+    this.isLoading = false;
   }
 }
