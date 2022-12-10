@@ -13,6 +13,7 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { environment } from 'src/environments/environment.prod';
 import { TodayComponent } from './today/today.component';
+import { TodoItemComponent } from './components/todo-item/todo-item.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { TodayComponent } from './today/today.component';
     TabsComponent,
     LoginComponent,
     TodayComponent,
+    TodoItemComponent,
   ],
   imports: [
     BrowserModule,

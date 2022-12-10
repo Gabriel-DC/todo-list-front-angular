@@ -50,7 +50,7 @@ export class TodoService {
   }
 
   public markAsDone(data: { id: string }, token: string) {
-    return this.http.put(`${this.baseUrl}/v1/todo/mark-as-done`, data, {
+    return this.http.patch(`${this.baseUrl}/v1/todo/mark-as-done`, data, {
       headers: this.composeHeaders(token),
     });
   }

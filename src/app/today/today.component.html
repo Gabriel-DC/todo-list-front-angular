@@ -1,12 +1,3 @@
-<div class="todo-item" *ngFor="let todo of todos">
-  <input
-    (change)="onCheckChange(todo)"
-    [(ngModel)]="todo.done"
-    [disabled]="isLoading"
-    type="checkbox"
-    name="done"
-    id="doneInput_{{ todo.id }}"
-  />
-  <h4 [ngClass]="{ done: todo.done }" class="todo-title">{{ todo.title }}</h4>
-  <small class="todo-date">{{ todo.date | date : "dd/MM/yyyy H:mm:ss" }}</small>
+<div *ngFor="let todo of todos">
+  <app-todo-item [todo]="todo"></app-todo-item>
 </div>
