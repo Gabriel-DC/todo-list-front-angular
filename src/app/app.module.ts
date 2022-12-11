@@ -15,6 +15,7 @@ import { environment } from 'src/environments/environment.prod';
 import { TodayComponent } from './today/today.component';
 import { TodoItemComponent } from './components/todo-item/todo-item.component';
 import { TomorrowComponent } from './tomorrow/tomorrow.component';
+import { AllComponent } from './all/all.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { TomorrowComponent } from './tomorrow/tomorrow.component';
     TodayComponent,
     TodoItemComponent,
     TomorrowComponent,
+    AllComponent,
   ],
   imports: [
     BrowserModule,

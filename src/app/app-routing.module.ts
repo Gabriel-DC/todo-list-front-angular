@@ -1,3 +1,4 @@
+import { AllComponent } from './all/all.component';
 import { TomorrowComponent } from './tomorrow/tomorrow.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -13,6 +14,7 @@ const routes: Routes = [
     children: [
       { path: '', component: TodayComponent },
       { path: 'tomorrow', component: TomorrowComponent },
+      { path: 'all', component: AllComponent },
     ],
   },
 ];

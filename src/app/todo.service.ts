@@ -41,7 +41,7 @@ export class TodoService {
   }
 
   public getAllTodos(token: string) {
-    return this.http.get(`${this.baseUrl}/v1/todos`, {
+    return this.http.get<TodoModel[]>(`${this.baseUrl}/v1/todos`, {
       headers: this.composeHeaders(token),
     });
   }
