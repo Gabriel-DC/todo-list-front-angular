@@ -32,9 +32,12 @@ export class TodoService {
   }
 
   public getTomorrowTodos(token: string) {
-    return this.http.get(`${this.baseUrl}/v1/todos/undone/tomorrow`, {
-      headers: this.composeHeaders(token),
-    });
+    return this.http.get<TodoModel[]>(
+      `${this.baseUrl}/v1/todos/undone/tomorrow`,
+      {
+        headers: this.composeHeaders(token),
+      }
+    );
   }
 
   public getAllTodos(token: string) {
@@ -56,7 +59,7 @@ export class TodoService {
   }
 
   public markAsUndone(data: { id: string }, token: string) {
-    return this.http.patch(`${this.baseUrl}/v1/todo/mark-as-done`, data, {
+    return this.http.patch(`${this.baseUrl}/v1/todo/mark-as-undone`, data, {
       headers: this.composeHeaders(token),
     });
   }

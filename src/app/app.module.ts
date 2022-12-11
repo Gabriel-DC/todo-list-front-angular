@@ -14,6 +14,7 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { environment } from 'src/environments/environment.prod';
 import { TodayComponent } from './today/today.component';
 import { TodoItemComponent } from './components/todo-item/todo-item.component';
+import { TomorrowComponent } from './tomorrow/tomorrow.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { TodoItemComponent } from './components/todo-item/todo-item.component';
     LoginComponent,
     TodayComponent,
     TodoItemComponent,
+    TomorrowComponent,
   ],
   imports: [
     BrowserModule,
