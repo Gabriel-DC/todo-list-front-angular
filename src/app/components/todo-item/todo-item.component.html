@@ -13,7 +13,14 @@
     </label>
   </h4>
   <small class="todo-date">{{ todo.date | date : "dd/MM/yyyy H:mm:ss" }}</small>
-  <button (click)="deleteTodo(todo)" class="btn-excluir" type="button">
+  <button (click)="modal.toggle()" class="btn-excluir" type="button">
     <img class="img-trash" width="20" src="../../../assets/trash.png" alt="" />
   </button>
 </div>
+<app-modal id="modal" #modal>
+  <h3>Tem certeza que deseja excluir ?</h3>
+  <div class="div-btn-modal">
+    <button id="btn-no" class="btn-modal" (click)="modal.toggle()">Não</button>
+    <button id="btn-yes" class="btn-modal" (click)="chama(todo)">Sim</button>
+  </div>
+</app-modal>
