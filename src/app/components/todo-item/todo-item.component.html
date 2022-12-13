@@ -4,9 +4,13 @@
     [(ngModel)]="todo.done"
     [disabled]="isLoading"
     type="checkbox"
-    name="done"
+    name="done_{{ todo.id }}"
     id="doneInput_{{ todo.id }}"
   />
-  <h4 [ngClass]="{ done: todo.done }" class="todo-title">{{ todo.title }}</h4>
+  <h4 [ngClass]="{ done: todo.done }" class="todo-title">
+    <label for="doneInput_{{ todo.id }}">
+      {{ todo.title }}
+    </label>
+  </h4>
   <small class="todo-date">{{ todo.date | date : "dd/MM/yyyy H:mm:ss" }}</small>
 </div>
