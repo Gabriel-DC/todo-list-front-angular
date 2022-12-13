@@ -48,4 +48,10 @@ export class TodayComponent implements OnInit {
       });
     });
   }
+
+  deleteTodo(todo: TodoModel) {
+    this.afAuth.idToken.subscribe((token: string | null) => {
+      if (token) this.todoService.deleteTodo({ id: todo.id }, token);
+    });
+  }
 }
