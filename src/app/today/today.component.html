@@ -1,11 +1,3 @@
 <div *ngFor="let todo of todos">
-  <app-todo-item
-    (deleteEvent)="handleDelete(todo, modal)"
-    [todo]="todo"
-  ></app-todo-item>
+  <app-todo-item [todo]="todo"></app-todo-item>
 </div>
-<app-modal #modal>
-  <h1>Tem certeza ?</h1>
-  <button>Não</button>
-  <button>Sim</button>
-</app-modal>

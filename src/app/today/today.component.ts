@@ -48,9 +48,4 @@ export class TodayComponent implements OnInit {
       });
     });
   }
-
-  handleDelete(todo: TodoModel, modal: ModalComponent) {
-    console.log(todo);
-    modal.toggle();
-  }
 }
