@@ -63,4 +63,8 @@ export class TodoService {
       headers: this.composeHeaders(token),
     });
   }
+
+  public deleteTodo(data: { id: string }, token: string) {
+    //TO DO
+  }
 }

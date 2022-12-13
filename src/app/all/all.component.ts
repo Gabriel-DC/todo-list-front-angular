@@ -36,6 +36,27 @@ export class AllComponent {
       title: 'Tomar café',
       user: 'seinão',
     },
+    {
+      id: 'batata',
+      date: new Date(2022, 12, 7, 8, 0, 0),
+      done: false,
+      title: 'Começar o trabalho',
+      user: 'seinão',
+    },
+    {
+      id: 'batata3',
+      date: new Date(2022, 12, 7),
+      done: false,
+      title: 'Fazer Comprinhas',
+      user: 'seinão',
+    },
+    {
+      id: 'batata2',
+      date: new Date(2022, 12, 7, 22, 17, 12),
+      done: true,
+      title: 'Assinar Netflix',
+      user: 'seinão',
+    },
   ];
 
   ngOnInit(): void {
