@@ -16,6 +16,7 @@ import { TodayComponent } from './today/today.component';
 import { TodoItemComponent } from './components/todo-item/todo-item.component';
 import { TomorrowComponent } from './tomorrow/tomorrow.component';
 import { AllComponent } from './all/all.component';
+import { ModalComponent } from './components/modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { AllComponent } from './all/all.component';
     TodoItemComponent,
     TomorrowComponent,
     AllComponent,
+    ModalComponent,
   ],
   imports: [
     BrowserModule,

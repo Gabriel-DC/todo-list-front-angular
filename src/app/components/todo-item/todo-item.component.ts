@@ -1,5 +1,5 @@
 import { TodoModel } from './../../models/todo';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { TodoService } from 'src/app/todo.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { of } from 'rxjs';
@@ -16,6 +16,8 @@ export class TodoItemComponent {
   ) {}
 
   @Input() public todo!: TodoModel;
+
+  @Output() public deleteEvent = new EventEmitter();
   public isLoading = false;
 
   markAsDone(todo: TodoModel) {
@@ -74,5 +76,6 @@ export class TodoItemComponent {
   deleteTodo(todo: TodoModel) {
     //TO DO
     //JOKES Lmao
+    this.deleteEvent.emit(todo);
   }
 }

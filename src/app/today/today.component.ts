@@ -1,3 +1,4 @@
+import { ModalComponent } from './../components/modal/modal.component';
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { TodoModel } from '../models/todo';
@@ -46,5 +47,10 @@ export class TodayComponent implements OnInit {
         this.todos = data;
       });
     });
+  }
+
+  handleDelete(todo: TodoModel, modal: ModalComponent) {
+    console.log(todo);
+    modal.toggle();
   }
 }
