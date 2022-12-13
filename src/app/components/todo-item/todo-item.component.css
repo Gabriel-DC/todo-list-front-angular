@@ -17,3 +17,19 @@
     text-decoration: line-through;
     opacity: 0.5;
 }
+
+.btn-excluir {
+    border: none;
+    padding: 0.3em;
+    margin-left: 1em;
+    background-color: brown;
+    border-radius: 0.3em;
+}
+
+.btn-excluir {
+    cursor: pointer;
+}
+
+.img-trash {
+    filter: brightness(0) invert(1);
+}

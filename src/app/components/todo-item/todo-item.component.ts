@@ -70,4 +70,9 @@ export class TodoItemComponent {
     if (todo.done) this.markAsDone(todo);
     else this.markAsUndone(todo);
   }
+
+  deleteTodo(todo: TodoModel) {
+    //TO DO
+    //JOKES Lmao
+  }
 }
