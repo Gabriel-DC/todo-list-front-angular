@@ -20,34 +20,25 @@ export class TodoService {
   }
 
   public getTodayTodos(token: string) {
-    let date: string = new Date(
-      new Date().toLocaleDateString('en-US', { timeZone: 'America/Sao_Paulo' })
-    )
-      .toISOString()
-      .split('T')[0];
-
-    return this.http.get<TodoModel[]>(`${this.baseUrl}/v1/todo/date/${date}`, {
+    return this.http.get<TodoModel[]>(`${this.baseUrl}/v1/todo/today`, {
       headers: this.composeHeaders(token),
     });
   }
 
   public getTomorrowTodos(token: string) {
-    return this.http.get<TodoModel[]>(
-      `${this.baseUrl}/v1/todos/undone/tomorrow`,
-      {
-        headers: this.composeHeaders(token),
-      }
-    );
+    return this.http.get<TodoModel[]>(`${this.baseUrl}/v1/todo/tomorrow`, {
+      headers: this.composeHeaders(token),
+    });
   }
 
   public getAllTodos(token: string) {
-    return this.http.get<TodoModel[]>(`${this.baseUrl}/v1/todos`, {
+    return this.http.get<TodoModel[]>(`${this.baseUrl}/v1/todo`, {
       headers: this.composeHeaders(token),
     });
   }
 
   public postTodo(data: any, token: string) {
-    return this.http.post(`${this.baseUrl}/v1/todos`, data, {
+    return this.http.post(`${this.baseUrl}/v1/todo`, data, {
       headers: this.composeHeaders(token),
     });
   }
