@@ -1,3 +1,4 @@
+import { ModalComponent } from './../modal/modal.component';
 import { TodoModel } from './../../models/todo';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { TodoService } from 'src/app/todo.service';
@@ -72,7 +73,10 @@ export class TodoItemComponent {
     else this.markAsUndone(todo);
   }
 
-  deleteTodo(todo: TodoModel) {}
+  deleteTodo(todo: TodoModel, modal: ModalComponent) {
+    this.deleteEvent.emit(todo);
+    modal.toggle();
+  }
 
   chama(todo: TodoModel) {
     alert('Deleta o ' + todo.title);

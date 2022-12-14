@@ -15,29 +15,7 @@ export class TodayComponent implements OnInit {
     private afAuth: AngularFireAuth
   ) {}
 
-  public todos: TodoModel[] = [
-    {
-      id: 'batata',
-      date: new Date(2022, 12, 7, 8, 0, 0),
-      done: false,
-      title: 'Começar o trabalho',
-      user: 'seinão',
-    },
-    {
-      id: 'batata3',
-      date: new Date(2022, 12, 7),
-      done: false,
-      title: 'Fazer Comprinhas',
-      user: 'seinão',
-    },
-    {
-      id: 'batata2',
-      date: new Date(2022, 12, 7, 22, 17, 12),
-      done: true,
-      title: 'Assinar Netflix',
-      user: 'seinão',
-    },
-  ];
+  public todos: TodoModel[] = [];
 
   ngOnInit(): void {
     this.afAuth.idToken.subscribe((token: any) => {
@@ -46,6 +24,12 @@ export class TodayComponent implements OnInit {
         console.log(data);
         this.todos = data;
       });
+    });
+  }
+
+  deleteTodo(todo: TodoModel) {
+    this.afAuth.idToken.subscribe((token: string | null) => {
+      if (token) this.todoService.deleteTodo({ id: todo.id }, token);
     });
   }
 }

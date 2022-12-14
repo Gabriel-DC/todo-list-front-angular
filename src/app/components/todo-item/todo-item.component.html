@@ -21,6 +21,8 @@
   <h3>Tem certeza que deseja excluir ?</h3>
   <div class="div-btn-modal">
     <button id="btn-no" class="btn-modal" (click)="modal.toggle()">Não</button>
-    <button id="btn-yes" class="btn-modal" (click)="chama(todo)">Sim</button>
+    <button id="btn-yes" class="btn-modal" (click)="deleteTodo(todo, modal)">
+      Sim
+    </button>
   </div>
 </app-modal>

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { TodoModel } from './models/todo';
+import { ServerResponse } from './models/ServerResponse';
 
 @Injectable({
   providedIn: 'root',
@@ -20,47 +21,69 @@ export class TodoService {
   }
 
   public getTodayTodos(token: string) {
-    let date: string = new Date(
-      new Date().toLocaleDateString('en-US', { timeZone: 'America/Sao_Paulo' })
-    )
-      .toISOString()
-      .split('T')[0];
-
-    return this.http.get<TodoModel[]>(`${this.baseUrl}/v1/todo/date/${date}`, {
+    return this.http.get<TodoModel[]>(`${this.baseUrl}/v1/todo/today`, {
       headers: this.composeHeaders(token),
     });
   }
 
   public getTomorrowTodos(token: string) {
-    return this.http.get<TodoModel[]>(
-      `${this.baseUrl}/v1/todos/undone/tomorrow`,
+    return this.http.get<TodoModel[]>(`${this.baseUrl}/v1/todo/tomorrow`, {
+      headers: this.composeHeaders(token),
+    });
+  }
+
+  public getAllTodos(token: string) {
+    return this.http.get<TodoModel[]>(`${this.baseUrl}/v1/todo`, {
+      headers: this.composeHeaders(token),
+    });
+  }
+
+  public postTodo(data: any, token: string) {
+    return this.http.post<ServerResponse<TodoModel>>(
+      `${this.baseUrl}/v1/todo`,
+      data,
       {
         headers: this.composeHeaders(token),
       }
     );
   }
 
-  public getAllTodos(token: string) {
-    return this.http.get<TodoModel[]>(`${this.baseUrl}/v1/todos`, {
-      headers: this.composeHeaders(token),
-    });
-  }
-
-  public postTodo(data: any, token: string) {
-    return this.http.post(`${this.baseUrl}/v1/todos`, data, {
-      headers: this.composeHeaders(token),
-    });
+  public updateTodo(data: TodoModel, token: string) {
+    return this.http.put<ServerResponse<TodoModel>>(
+      `${this.baseUrl}/v1/todo`,
+      data,
+      {
+        headers: this.composeHeaders(token),
+      }
+    );
   }
 
   public markAsDone(data: { id: string }, token: string) {
-    return this.http.patch(`${this.baseUrl}/v1/todo/mark-as-done`, data, {
-      headers: this.composeHeaders(token),
-    });
+    return this.http.patch<ServerResponse<TodoModel>>(
+      `${this.baseUrl}/v1/todo/mark-as-done`,
+      data,
+      {
+        headers: this.composeHeaders(token),
+      }
+    );
   }
 
   public markAsUndone(data: { id: string }, token: string) {
-    return this.http.patch(`${this.baseUrl}/v1/todo/mark-as-undone`, data, {
-      headers: this.composeHeaders(token),
-    });
+    return this.http.patch<ServerResponse<TodoModel>>(
+      `${this.baseUrl}/v1/todo/mark-as-undone`,
+      data,
+      {
+        headers: this.composeHeaders(token),
+      }
+    );
+  }
+
+  public deleteTodo(data: { id: string }, token: string) {
+    return this.http.delete<ServerResponse<{}>>(
+      `${this.baseUrl}/v1/todo/${data.id}`,
+      {
+        headers: this.composeHeaders(token),
+      }
+    );
   }
 }
