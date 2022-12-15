@@ -18,12 +18,13 @@ export class TodayComponent implements OnInit {
   public todos: TodoModel[] = [];
 
   ngOnInit(): void {
-    this.afAuth.idToken.subscribe((token: any) => {
-      this.todoService.getTodayTodos(token).subscribe((data: TodoModel[]) => {
-        console.log(token);
-        console.log(data);
-        this.todos = data;
-      });
+    this.afAuth.idToken.subscribe((token: string | null) => {
+      if (token)
+        this.todoService.getTodayTodos(token).subscribe((data: TodoModel[]) => {
+          console.log(token);
+          console.log(data);
+          this.todos = data;
+        });
     });
   }
 
