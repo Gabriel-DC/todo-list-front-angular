@@ -17,6 +17,7 @@ import { TodoItemComponent } from './components/todo-item/todo-item.component';
 import { TomorrowComponent } from './tomorrow/tomorrow.component';
 import { AllComponent } from './all/all.component';
 import { ModalComponent } from './components/modal/modal.component';
+import { NewTodoButtonComponent } from './components/new-todo-button/new-todo-button.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { ModalComponent } from './components/modal/modal.component';
     TomorrowComponent,
     AllComponent,
     ModalComponent,
+    NewTodoButtonComponent,
   ],
   imports: [
     BrowserModule,

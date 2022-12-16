@@ -1,0 +1,11 @@
+
+.new-todo {
+  background-color: coral;
+  border: none;
+  color: aliceblue;
+  width: 100%;
+  font-size: 2.2em;
+  font-weight: 900;
+  border-radius: 0.3em;
+  cursor: pointer;
+}
