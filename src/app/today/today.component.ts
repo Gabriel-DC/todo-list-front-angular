@@ -28,11 +28,28 @@ export class TodayComponent implements OnInit {
   }
 
   deleteTodo(todo: TodoModel) {
+    debugger;
+    if (!todo.id) {
+      this.todos = this.todos.filter((t) => t.id !== todo.id);
+      return;
+    }
+
     this.afAuth.idToken.subscribe((token: string | null) => {
       if (token)
         this.todoService.deleteTodo({ id: todo.id }, token).subscribe(() => {
           this.todos = this.todos.filter((t) => t.id !== todo.id);
         });
     });
+  }
+
+  newTodo() {
+    console.log('new todo');
+    this.todos.push({
+      id: '',
+      title: '',
+      date: new Date(),
+      done: false,
+    });
+    console.log(this.todos);
   }
 }

@@ -16,6 +16,7 @@ export class TodoItemComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     this.editedTodo = { ...this.todo };
+    if (!this.todo.id) this.isInEditMode = true;
   }
 
   public isInEditMode = false;
@@ -89,7 +90,11 @@ export class TodoItemComponent implements OnInit {
   }
 
   onCancelEdit() {
+    debugger;
+    if (!this.todo.id) this.deleteEvent.emit(this.todo);
+
     this.isInEditMode = false;
+    this.editedTodo = { ...this.todo };
   }
 
   // chama(todo: TodoModel) {

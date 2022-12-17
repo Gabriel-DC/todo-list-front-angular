@@ -12,7 +12,8 @@
     <input
       class="edit-date-input"
       type="datetime"
-      [(ngModel)]="editedTodo.date"
+      [ngModel]="editedTodo.date | date : 'yyyy-MM-ddTHH:mm:ss'"
+      (ngModelChange)="editedTodo.date = $event"
       name="date_{{ todo.id }}"
       id="dateInput_{{ todo.id }}"
     />
