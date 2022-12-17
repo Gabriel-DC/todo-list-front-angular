@@ -15,6 +15,7 @@ export class TodoItemComponent {
     private afAuth: AngularFireAuth
   ) {}
 
+  public isInEditMode = false;
   @Input() public todo!: TodoModel;
 
   @Output() public deleteEvent = new EventEmitter();
@@ -78,7 +79,13 @@ export class TodoItemComponent {
     modal.toggle();
   }
 
-  chama(todo: TodoModel) {
-    alert('Deleta o ' + todo.title);
+  onEditTodo() {}
+
+  onCancelEdit() {
+    this.isInEditMode = false;
   }
+
+  // chama(todo: TodoModel) {
+  //   alert('Deleta o ' + todo.title);
+  // }
 }

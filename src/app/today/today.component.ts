@@ -1,4 +1,3 @@
-import { ModalComponent } from './../components/modal/modal.component';
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { TodoModel } from '../models/todo';
@@ -30,7 +29,10 @@ export class TodayComponent implements OnInit {
 
   deleteTodo(todo: TodoModel) {
     this.afAuth.idToken.subscribe((token: string | null) => {
-      if (token) this.todoService.deleteTodo({ id: todo.id }, token);
+      if (token)
+        this.todoService.deleteTodo({ id: todo.id }, token).subscribe(() => {
+          this.todos = this.todos.filter((t) => t.id !== todo.id);
+        });
     });
   }
 }
