@@ -1,6 +1,7 @@
 <div class="todo-item">
   <ng-container *ngIf="isInEditMode">
     <input
+      class="edit-title-input"
       [(ngModel)]="editedTodo.title"
       (keyup.enter)="onEditTodo()"
       (keyup.escape)="onCancelEdit()"
@@ -9,6 +10,7 @@
       id="titleInput_{{ todo.id }}"
     />
     <input
+      class="edit-date-input"
       type="datetime"
       [(ngModel)]="editedTodo.date"
       name="date_{{ todo.id }}"

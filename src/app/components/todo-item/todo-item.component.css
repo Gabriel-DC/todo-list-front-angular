@@ -68,3 +68,29 @@
 #modal {
     user-select: none;
 }
+
+.edit-title-input {
+    width: 100%;
+    padding: 0.5em;
+    border: none;
+    border-bottom: 1px solid black;
+    outline: none;
+    background-color: transparent;
+}
+
+.edit-title-input:focus {
+    border-bottom: 1px solid rgb(255, 107, 107);
+}
+
+.edit-date-input {
+    width: 30%;
+    padding: 0.5em;
+    border: none;
+    border-bottom: 1px solid black;
+    outline: none;
+    background-color: transparent;
+}
+
+.edit-date-input:focus {
+    border-bottom: 1px solid rgb(255, 107, 107);
+}
