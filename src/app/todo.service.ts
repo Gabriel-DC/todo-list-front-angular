@@ -58,7 +58,7 @@ export class TodoService {
     );
   }
 
-  public markAsDone(data: { id: string }, token: string) {
+  public markAsDone(data: { todoId: string }, token: string) {
     return this.http.patch<ServerResponse<TodoModel>>(
       `${this.baseUrl}/v1/todo/mark-as-done`,
       data,
@@ -68,7 +68,7 @@ export class TodoService {
     );
   }
 
-  public markAsUndone(data: { id: string }, token: string) {
+  public markAsUndone(data: { todoId: string }, token: string) {
     return this.http.patch<ServerResponse<TodoModel>>(
       `${this.baseUrl}/v1/todo/mark-as-undone`,
       data,

@@ -23,7 +23,7 @@ export class TodoItemComponent {
   markAsDone(todo: TodoModel) {
     this.afAuth.idToken.subscribe({
       next: (token) => {
-        const data = { id: todo.id };
+        const data = { todoId: todo.id };
         if (token)
           this.todoService.markAsDone(data, token).subscribe({
             next: () => {
@@ -47,7 +47,7 @@ export class TodoItemComponent {
     this.afAuth.idToken.subscribe({
       next: (token) => {
         if (token) {
-          const data = { id: todo.id };
+          const data = { todoId: todo.id };
           this.todoService.markAsUndone(data, token).subscribe({
             next: () => {
               todo.done = false;
