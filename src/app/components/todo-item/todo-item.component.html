@@ -1,12 +1,18 @@
 <div class="todo-item">
   <ng-container *ngIf="isInEditMode">
     <input
-      [ngModel]="todo.title"
+      [(ngModel)]="editedTodo.title"
       (keyup.enter)="onEditTodo()"
       (keyup.escape)="onCancelEdit()"
       type="text"
       name="title_{{ todo.id }}"
       id="titleInput_{{ todo.id }}"
+    />
+    <input
+      type="datetime"
+      [(ngModel)]="editedTodo.date"
+      name="date_{{ todo.id }}"
+      id="dateInput_{{ todo.id }}"
     />
     <button (click)="onEditTodo()" class="btn-edit" type="button">
       <img

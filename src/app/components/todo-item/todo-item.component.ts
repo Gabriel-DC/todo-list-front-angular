@@ -1,6 +1,6 @@
 import { ModalComponent } from './../modal/modal.component';
 import { TodoModel } from './../../models/todo';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { TodoService } from 'src/app/todo.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 
@@ -9,14 +9,18 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
   templateUrl: './todo-item.component.html',
   styleUrls: ['./todo-item.component.css'],
 })
-export class TodoItemComponent {
+export class TodoItemComponent implements OnInit {
   constructor(
     private todoService: TodoService,
     private afAuth: AngularFireAuth
   ) {}
+  ngOnInit(): void {
+    this.editedTodo = { ...this.todo };
+  }
 
   public isInEditMode = false;
   @Input() public todo!: TodoModel;
+  public editedTodo!: TodoModel;
 
   @Output() public deleteEvent = new EventEmitter();
   public isLoading = false;
@@ -79,7 +83,10 @@ export class TodoItemComponent {
     modal.toggle();
   }
 
-  onEditTodo() {}
+  onEditTodo() {
+    console.log(this.editedTodo);
+    console.log(this.todo);
+  }
 
   onCancelEdit() {
     this.isInEditMode = false;
