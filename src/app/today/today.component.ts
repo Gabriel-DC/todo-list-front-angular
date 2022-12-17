@@ -47,7 +47,7 @@ export class TodayComponent implements OnInit {
     this.todos.push({
       id: '',
       title: '',
-      date: new Date(),
+      date: new Date().toISOString(),
       done: false,
     });
     console.log(this.todos);
