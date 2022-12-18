@@ -85,6 +85,48 @@ export class TodoItemComponent implements OnInit {
   }
 
   onEditTodo() {
+    let title = this.editedTodo.title.trim();
+    let date = this.editedTodo.date;
+    let isNew = !this.todo.id;
+
+    if (title && date) {
+      if (isNew) {
+        this.afAuth.idToken.subscribe((token) => {
+          if (token) {
+            this.todoService
+              .postTodo({ title: title, date: date }, token)
+              .subscribe({
+                next: (res) => {
+                  this.todo = res.data;
+                  this.isInEditMode = false;
+                },
+              });
+          }
+        });
+        return;
+      }
+
+      this.afAuth.idToken.subscribe((token) => {
+        if (token) {
+          this.todoService
+            .updateTodo(
+              {
+                todoId: this.editedTodo.id,
+                title: this.editedTodo.title,
+                date: this.editedTodo.date,
+              },
+              token
+            )
+            .subscribe({
+              next: (res) => {
+                this.todo = res.data;
+                this.isInEditMode = false;
+              },
+            });
+        }
+      });
+    }
+
     console.log(this.editedTodo);
     console.log(this.todo);
   }
