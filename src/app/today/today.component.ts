@@ -47,7 +47,11 @@ export class TodayComponent implements OnInit {
     this.todos.push({
       id: '',
       title: '',
-      date: new Date().toISOString(),
+      date: new Date(
+        new Date().toLocaleDateString('en-US', {
+          timeZone: 'America/Sao_Paulo',
+        })
+      ),
       done: false,
     });
     console.log(this.todos);
