@@ -103,6 +103,8 @@ export class TodoItemComponent implements OnInit {
               });
           }
         });
+        console.log(this.editedTodo);
+        console.log(this.todo);
         return;
       }
 
@@ -132,7 +134,6 @@ export class TodoItemComponent implements OnInit {
   }
 
   onCancelEdit() {
-    debugger;
     if (!this.todo.id) this.deleteEvent.emit(this.todo);
 
     this.isInEditMode = false;
