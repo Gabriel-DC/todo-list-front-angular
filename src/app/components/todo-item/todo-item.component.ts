@@ -1,6 +1,6 @@
 import { ModalComponent } from './../modal/modal.component';
 import { TodoModel } from './../../models/todo';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { TodoService } from 'src/app/todo.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 
@@ -9,21 +9,28 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
   templateUrl: './todo-item.component.html',
   styleUrls: ['./todo-item.component.css'],
 })
-export class TodoItemComponent {
+export class TodoItemComponent implements OnInit {
   constructor(
     private todoService: TodoService,
     private afAuth: AngularFireAuth
   ) {}
+  ngOnInit(): void {
+    this.editedTodo = { ...this.todo };
+    if (!this.todo.id) this.isInEditMode = true;
+  }
 
+  public isInEditMode = false;
   @Input() public todo!: TodoModel;
+  public editedTodo!: TodoModel;
 
   @Output() public deleteEvent = new EventEmitter();
+  @Output() public createEvent = new EventEmitter();
   public isLoading = false;
 
   markAsDone(todo: TodoModel) {
     this.afAuth.idToken.subscribe({
       next: (token) => {
-        const data = { id: todo.id };
+        const data = { todoId: todo.id };
         if (token)
           this.todoService.markAsDone(data, token).subscribe({
             next: () => {
@@ -47,7 +54,7 @@ export class TodoItemComponent {
     this.afAuth.idToken.subscribe({
       next: (token) => {
         if (token) {
-          const data = { id: todo.id };
+          const data = { todoId: todo.id };
           this.todoService.markAsUndone(data, token).subscribe({
             next: () => {
               todo.done = false;
@@ -78,7 +85,66 @@ export class TodoItemComponent {
     modal.toggle();
   }
 
-  chama(todo: TodoModel) {
-    alert('Deleta o ' + todo.title);
+  onEditTodo() {
+    debugger;
+    let title = this.editedTodo.title.trim();
+    let date = this.editedTodo.date;
+    let isNew = !this.todo.id;
+
+    if (title && date) {
+      if (isNew) {
+        this.afAuth.idToken.subscribe((token) => {
+          if (token) {
+            this.todoService
+              .postTodo({ title: title, date: date }, token)
+              .subscribe({
+                next: (res) => {
+                  this.createEvent.emit(res.data);
+                  this.todo = res.data;
+                  this.editedTodo = res.data;
+                  this.isInEditMode = false;
+                },
+              });
+          }
+        });
+        console.log(this.editedTodo);
+        console.log(this.todo);
+        return;
+      }
+
+      this.afAuth.idToken.subscribe((token) => {
+        if (token) {
+          this.todoService
+            .updateTodo(
+              {
+                todoId: this.editedTodo.id,
+                title: this.editedTodo.title,
+                date: this.editedTodo.date,
+              },
+              token
+            )
+            .subscribe({
+              next: (res) => {
+                this.todo = res.data;
+                this.isInEditMode = false;
+              },
+            });
+        }
+      });
+    }
+
+    console.log(this.editedTodo);
+    console.log(this.todo);
   }
+
+  onCancelEdit() {
+    if (!this.todo.id) this.deleteEvent.emit(this.todo);
+
+    this.isInEditMode = false;
+    this.editedTodo = { ...this.todo };
+  }
+
+  // chama(todo: TodoModel) {
+  //   alert('Deleta o ' + todo.title);
+  // }
 }

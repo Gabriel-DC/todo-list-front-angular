@@ -1,21 +1,77 @@
 <div class="todo-item">
-  <input
-    (change)="onCheckChange(todo)"
-    [(ngModel)]="todo.done"
-    [disabled]="isLoading"
-    type="checkbox"
-    name="done_{{ todo.id }}"
-    id="doneInput_{{ todo.id }}"
-  />
-  <h4 [ngClass]="{ done: todo.done }" class="todo-title">
-    <label for="doneInput_{{ todo.id }}">
-      {{ todo.title }}
-    </label>
-  </h4>
-  <small class="todo-date">{{ todo.date | date : "dd/MM/yyyy H:mm:ss" }}</small>
-  <button (click)="modal.toggle()" class="btn-excluir" type="button">
-    <img class="img-trash" width="20" src="../../../assets/trash.png" alt="" />
-  </button>
+  <ng-container *ngIf="isInEditMode">
+    <input
+      placeholder="Título"
+      class="edit-title-input"
+      [(ngModel)]="editedTodo.title"
+      (keyup.enter)="onEditTodo()"
+      (keyup.escape)="onCancelEdit()"
+      autofocus
+      type="text"
+      name="title_{{ todo.id }}"
+      id="titleInput_{{ todo.id }}"
+    />
+    <input
+      class="edit-date-input"
+      type="datetime"
+      (keyup.enter)="onEditTodo()"
+      (keyup.escape)="onCancelEdit()"
+      [ngModel]="editedTodo.date | date : 'yyyy-MM-ddTHH:mm:ss'"
+      (ngModelChange)="editedTodo.date = $event"
+      name="date_{{ todo.id }}"
+      id="dateInput_{{ todo.id }}"
+    />
+    <button (click)="onEditTodo()" class="btn-edit" type="button">
+      <img
+        class="img-trash"
+        width="20"
+        src="../../../assets/save.png"
+        alt="Salvar"
+      />
+    </button>
+    <button (click)="onCancelEdit()" class="btn-excluir" type="button">
+      <img
+        class="img-trash"
+        width="20"
+        src="../../../assets/cancel.png"
+        alt="Cancelar"
+      />
+    </button>
+  </ng-container>
+  <ng-container *ngIf="!isInEditMode">
+    <input
+      (change)="onCheckChange(todo)"
+      [(ngModel)]="todo.done"
+      [disabled]="isLoading"
+      type="checkbox"
+      name="done_{{ todo.id }}"
+      id="doneInput_{{ todo.id }}"
+    />
+    <h4 [ngClass]="{ done: todo.done }" class="todo-title">
+      <label for="doneInput_{{ todo.id }}">
+        {{ todo.title }}
+      </label>
+    </h4>
+    <small class="todo-date">{{
+      todo.date | date : "dd/MM/yyyy H:mm:ss"
+    }}</small>
+    <button (click)="isInEditMode = true" class="btn-edit" type="button">
+      <img
+        class="img-trash"
+        width="20"
+        src="../../../assets/edit.png"
+        alt="Editar"
+      />
+    </button>
+    <button (click)="modal.toggle()" class="btn-excluir" type="button">
+      <img
+        class="img-trash"
+        width="20"
+        src="../../../assets/trash.png"
+        alt="Excluir"
+      />
+    </button>
+  </ng-container>
 </div>
 <app-modal id="modal" #modal>
   <h3>Tem certeza que deseja excluir ?</h3>

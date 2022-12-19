@@ -14,50 +14,7 @@ export class AllComponent {
     private afAuth: AngularFireAuth
   ) {}
 
-  public todos: TodoModel[] = [
-    {
-      id: 'batata',
-      date: new Date(2022, 12, 7, 8, 0, 0),
-      done: false,
-      title: 'Acordar',
-      user: 'seinão',
-    },
-    {
-      id: 'batata3',
-      date: new Date(2022, 12, 7),
-      done: false,
-      title: 'Marcar reunião com empresa X',
-      user: 'seinão',
-    },
-    {
-      id: 'batata2',
-      date: new Date(2022, 12, 7, 22, 17, 12),
-      done: false,
-      title: 'Tomar café',
-      user: 'seinão',
-    },
-    {
-      id: 'batata',
-      date: new Date(2022, 12, 7, 8, 0, 0),
-      done: false,
-      title: 'Começar o trabalho',
-      user: 'seinão',
-    },
-    {
-      id: 'batata3',
-      date: new Date(2022, 12, 7),
-      done: false,
-      title: 'Fazer Comprinhas',
-      user: 'seinão',
-    },
-    {
-      id: 'batata2',
-      date: new Date(2022, 12, 7, 22, 17, 12),
-      done: true,
-      title: 'Assinar Netflix',
-      user: 'seinão',
-    },
-  ];
+  public todos: TodoModel[] = [];
 
   ngOnInit(): void {
     this.afAuth.idToken.subscribe((token: any) => {
