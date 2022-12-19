@@ -1,6 +1,7 @@
 <div class="todo-item">
   <ng-container *ngIf="isInEditMode">
     <input
+      #titleInput
       placeholder="Título"
       class="edit-title-input"
       [(ngModel)]="editedTodo.title"
@@ -55,7 +56,7 @@
     <small class="todo-date">{{
       todo.date | date : "dd/MM/yyyy H:mm:ss"
     }}</small>
-    <button (click)="isInEditMode = true" class="btn-edit" type="button">
+    <button (click)="startEdit()" class="btn-edit" type="button">
       <img
         class="img-trash"
         width="20"

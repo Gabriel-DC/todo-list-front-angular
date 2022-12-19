@@ -1,6 +1,14 @@
 import { ModalComponent } from './../modal/modal.component';
 import { TodoModel } from './../../models/todo';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { TodoService } from 'src/app/todo.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 
@@ -16,9 +24,10 @@ export class TodoItemComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     this.editedTodo = { ...this.todo };
-    if (!this.todo.id) this.isInEditMode = true;
+    if (!this.todo.id) this.startEdit();
   }
 
+  @ViewChild('titleInput', { static: false }) input!: ElementRef;
   public isInEditMode = false;
   @Input() public todo!: TodoModel;
   public editedTodo!: TodoModel;
@@ -143,7 +152,10 @@ export class TodoItemComponent implements OnInit {
     this.editedTodo = { ...this.todo };
   }
 
-  // chama(todo: TodoModel) {
-  //   alert('Deleta o ' + todo.title);
-  // }
+  startEdit() {
+    this.isInEditMode = true;
+    setTimeout(() => {
+      this.input.nativeElement.focus();
+    });
+  }
 }
