@@ -24,6 +24,7 @@ export class TodoItemComponent implements OnInit {
   public editedTodo!: TodoModel;
 
   @Output() public deleteEvent = new EventEmitter();
+  @Output() public createEvent = new EventEmitter();
   public isLoading = false;
 
   markAsDone(todo: TodoModel) {
@@ -85,6 +86,7 @@ export class TodoItemComponent implements OnInit {
   }
 
   onEditTodo() {
+    debugger;
     let title = this.editedTodo.title.trim();
     let date = this.editedTodo.date;
     let isNew = !this.todo.id;
@@ -97,7 +99,9 @@ export class TodoItemComponent implements OnInit {
               .postTodo({ title: title, date: date }, token)
               .subscribe({
                 next: (res) => {
+                  this.createEvent.emit(res.data);
                   this.todo = res.data;
+                  this.editedTodo = res.data;
                   this.isInEditMode = false;
                 },
               });

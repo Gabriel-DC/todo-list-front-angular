@@ -15,6 +15,7 @@ export class TodayComponent implements OnInit {
   ) {}
 
   public todos: TodoModel[] = [];
+  public isCreating = false;
 
   ngOnInit(): void {
     this.afAuth.idToken.subscribe((token: string | null) => {
@@ -28,9 +29,9 @@ export class TodayComponent implements OnInit {
   }
 
   deleteTodo(todo: TodoModel) {
-    debugger;
     if (!todo.id) {
       this.todos = this.todos.filter((t) => t.id !== todo.id);
+      this.isCreating = false;
       return;
     }
 
@@ -43,6 +44,7 @@ export class TodayComponent implements OnInit {
   }
 
   newTodo() {
+    this.isCreating = true;
     console.log('new todo');
     this.todos.push({
       id: '',
@@ -55,5 +57,11 @@ export class TodayComponent implements OnInit {
       done: false,
     });
     console.log(this.todos);
+  }
+
+  updateTodo(todo: TodoModel) {
+    this.isCreating = false;
+    this.todos = this.todos.filter((t) => t.id);
+    this.todos.push(todo);
   }
 }
