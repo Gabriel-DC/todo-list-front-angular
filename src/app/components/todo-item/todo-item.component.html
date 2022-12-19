@@ -6,6 +6,7 @@
       [(ngModel)]="editedTodo.title"
       (keyup.enter)="onEditTodo()"
       (keyup.escape)="onCancelEdit()"
+      autofocus
       type="text"
       name="title_{{ todo.id }}"
       id="titleInput_{{ todo.id }}"
