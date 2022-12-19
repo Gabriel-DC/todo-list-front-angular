@@ -86,7 +86,6 @@ export class TodoItemComponent implements OnInit {
   }
 
   onEditTodo() {
-    debugger;
     let title = this.editedTodo.title.trim();
     let date = this.editedTodo.date;
     let isNew = !this.todo.id;
