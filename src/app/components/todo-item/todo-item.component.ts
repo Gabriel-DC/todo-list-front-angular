@@ -84,7 +84,6 @@ export class TodoItemComponent implements OnInit {
 
   onCheckChange(todo: TodoModel) {
     this.isLoading = true;
-    console.log(todo.done);
     if (todo.done) this.markAsDone(todo);
     else this.markAsUndone(todo);
   }
@@ -115,8 +114,6 @@ export class TodoItemComponent implements OnInit {
               });
           }
         });
-        console.log(this.editedTodo);
-        console.log(this.todo);
         return;
       }
 
@@ -140,9 +137,6 @@ export class TodoItemComponent implements OnInit {
         }
       });
     }
-
-    console.log(this.editedTodo);
-    console.log(this.todo);
   }
 
   onCancelEdit() {

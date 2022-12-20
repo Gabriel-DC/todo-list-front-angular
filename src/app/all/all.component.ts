@@ -19,8 +19,6 @@ export class AllComponent {
   ngOnInit(): void {
     this.afAuth.idToken.subscribe((token: any) => {
       this.todoService.getAllTodos(token).subscribe((data: TodoModel[]) => {
-        console.log(token);
-        console.log(data);
         this.todos = data;
       });
     });

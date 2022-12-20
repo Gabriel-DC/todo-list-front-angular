@@ -21,8 +21,6 @@ export class TodayComponent implements OnInit {
     this.afAuth.idToken.subscribe((token: string | null) => {
       if (token)
         this.todoService.getTodayTodos(token).subscribe((data: TodoModel[]) => {
-          console.log(token);
-          console.log(data);
           this.todos = data;
         });
     });
@@ -45,7 +43,6 @@ export class TodayComponent implements OnInit {
 
   newTodo() {
     this.isCreating = true;
-    console.log('new todo');
     this.todos.push({
       id: '',
       title: '',
@@ -56,7 +53,6 @@ export class TodayComponent implements OnInit {
       ),
       done: false,
     });
-    console.log(this.todos);
   }
 
   updateTodo(todo: TodoModel) {
