@@ -1,0 +1,41 @@
+.search-header {
+    margin: 0 0 20px 0;
+    padding: 0 0 20px 0;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+input {
+    width: 27%;
+    padding: 0.2em 0.3em;
+    box-sizing: border-box;
+    font-size: 1em;
+    color: rgb(255, 107, 107);
+    font-weight: 800;
+    border-radius: 0.3em;
+    border: thin solid gray;
+}
+
+.filter-button {
+    border: none;
+    width: 10%;
+    font-size: 1em;
+    padding: 0.8em 0.5em;
+    border-radius: 0.3em;
+    background-color: rgb(255, 107, 107);
+    color: aliceblue;
+    cursor: pointer;
+}
+
+.filter-button:disabled {
+    background-color: rgb(235, 176, 176);
+    color: aliceblue;
+}
+
+.filter-button:focus {
+    outline: none;
+}
+
+

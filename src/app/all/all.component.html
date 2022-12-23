@@ -1,3 +1,28 @@
+<div class="search-header">
+  <input
+    [ngModel]="startDate | date : 'yyyy-MM-dd'"
+    (ngModelChange)="startDate = $event"
+    type="date"
+    name="startDateFilter"
+    id="startDateFilter"
+  />
+  <p>ATÉ</p>
+  <input
+    [ngModel]="endDate | date : 'yyyy-MM-dd'"
+    (ngModelChange)="endDate = $event"
+    type="date"
+    name="endDateFilter"
+    id="endDateFilter"
+  />
+  <button
+    class="filter-button"
+    [disabled]="!startDate || !endDate"
+    (click)="filter()"
+  >
+    Buscar
+  </button>
+</div>
 <div *ngFor="let todo of todos">
   <app-todo-item [todo]="todo"></app-todo-item>
 </div>
+<app-new-todo-button></app-new-todo-button>
