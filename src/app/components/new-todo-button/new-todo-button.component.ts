@@ -11,7 +11,6 @@ export class NewTodoButtonComponent {
   @Output() public newTodoEvent = new EventEmitter();
 
   addTodo() {
-    console.log('new todo');
     this.newTodoEvent.emit();
   }
 }

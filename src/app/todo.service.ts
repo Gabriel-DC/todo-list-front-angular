@@ -38,6 +38,18 @@ export class TodoService {
     });
   }
 
+  public getAllTodosByPeriod(
+    token: string,
+    period: { startDate: string; endDate: string }
+  ) {
+    return this.http.get<TodoModel[]>(
+      `${this.baseUrl}/v1/todo/period/${period.startDate}/${period.endDate}`,
+      {
+        headers: this.composeHeaders(token),
+      }
+    );
+  }
+
   public postTodo(data: { title: string; date: string | Date }, token: string) {
     return this.http.post<ServerResponse<TodoModel>>(
       `${this.baseUrl}/v1/todo`,

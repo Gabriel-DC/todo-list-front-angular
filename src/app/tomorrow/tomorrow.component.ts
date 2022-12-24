@@ -21,8 +21,6 @@ export class TomorrowComponent {
       this.todoService
         .getTomorrowTodos(token)
         .subscribe((data: TodoModel[]) => {
-          console.log(token);
-          console.log(data);
           this.todos = data;
         });
     });

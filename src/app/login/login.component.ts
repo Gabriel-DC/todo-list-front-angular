@@ -19,7 +19,6 @@ export class LoginComponent {
     this.afAuth
       .signInWithPopup(new auth.GoogleAuthProvider())
       .then((data) => {
-        console.log(data.user?.getIdToken());
         if (data.user !== null) this.router.navigate(['/']);
       })
       .catch((err) => console.log(err));
