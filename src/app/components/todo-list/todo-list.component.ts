@@ -18,9 +18,44 @@ export class TodoListComponent implements OnInit {
   public isCreating = false;
   @Input() public date!: string | Date;
 
+  filter(startDate: string, endDate: string): void {
+    this.afAuth.idToken.subscribe((token: any) => {
+      if (token) {
+        this.todoService
+          .getAllTodosByPeriod(token, {
+            startDate: startDate.split('T')[0],
+            endDate: endDate.split('T')[0],
+          })
+          .subscribe((data: TodoModel[]) => {
+            this.todos = data;
+          });
+      }
+    });
+  }
+
   ngOnInit(): void {
     this.afAuth.idToken.subscribe((token: string | null) => {
-      debugger;
+      if (token)
+        if (this.date)
+          this.todoService
+            .getAllTodosByDate(token, this.date.toString())
+            .subscribe((data: TodoModel[]) => {
+              this.todos = data;
+            });
+        else
+          this.todoService.getAllTodos(token).subscribe((data: TodoModel[]) => {
+            this.todos = data;
+          });
+    });
+  }
+
+  reload(fastReload = false) {
+    if (fastReload) {
+      this.todos = this.todos.filter((t) => t.date == this.date);
+      return;
+    }
+
+    this.afAuth.idToken.subscribe((token: string | null) => {
       if (token)
         if (this.date)
           this.todoService

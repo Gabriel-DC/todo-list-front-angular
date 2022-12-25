@@ -20,13 +20,13 @@ export class AllComponent {
   public endDate!: string;
 
   ngOnInit(): void {
-    this.afAuth.idToken.subscribe((token: any) => {
-      this.todoService.getAllTodos(token).subscribe((data: TodoModel[]) => {
-        this.todos = data;
-        this.startDate = this.todos[0]?.date?.toString();
-        this.endDate = this.todos[this.todos.length - 1].date?.toString();
-      });
-    });
+    // this.afAuth.idToken.subscribe((token: any) => {
+    //   this.todoService.getAllTodos(token).subscribe((data: TodoModel[]) => {
+    //     this.todos = data;
+    //     this.startDate = this.todos[0]?.date?.toString();
+    //     this.endDate = this.todos[this.todos.length - 1].date?.toString();
+    //   });
+    // });
   }
 
   filter() {
