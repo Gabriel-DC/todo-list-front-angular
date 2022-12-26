@@ -19,7 +19,7 @@ export class TodoListComponent implements OnInit {
   @Input() public date!: string | Date;
 
   filter(startDate: string, endDate: string): void {
-    this.afAuth.idToken.subscribe((token: any) => {
+    this.afAuth.idToken.subscribe((token: string | null) => {
       if (token) {
         this.todoService
           .getAllTodosByPeriod(token, {
@@ -51,7 +51,12 @@ export class TodoListComponent implements OnInit {
 
   reload(fastReload = false) {
     if (fastReload) {
-      this.todos = this.todos.filter((t) => t.date == this.date);
+      if (this.date)
+        this.todos = this.todos
+          .filter((t) => t.date == this.date)
+          .sort((a, b) => (a.date > b.date ? 1 : -1));
+      else this.todos = this.todos.sort((a, b) => (a.date > b.date ? 1 : -1));
+
       return;
     }
 
