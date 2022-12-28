@@ -18,21 +18,6 @@ export class TodoListComponent implements OnInit {
   public isCreating = false;
   @Input() public date!: string | Date;
 
-  filter(startDate: string, endDate: string): void {
-    this.afAuth.idToken.subscribe((token: string | null) => {
-      if (token) {
-        this.todoService
-          .getAllTodosByPeriod(token, {
-            startDate: startDate.split('T')[0],
-            endDate: endDate.split('T')[0],
-          })
-          .subscribe((data: TodoModel[]) => {
-            this.todos = data;
-          });
-      }
-    });
-  }
-
   ngOnInit(): void {
     this.afAuth.idToken.subscribe((token: string | null) => {
       if (token)
@@ -49,11 +34,27 @@ export class TodoListComponent implements OnInit {
     });
   }
 
+  filter(filter: { startDate: string; endDate: string }): void {
+    this.afAuth.idToken.subscribe((token: string | null) => {
+      if (token) {
+        this.todoService
+          .getAllTodosByPeriod(token, {
+            startDate: filter.startDate.split('T')[0],
+            endDate: filter.endDate.split('T')[0],
+          })
+          .subscribe((data: TodoModel[]) => {
+            this.todos = data;
+          });
+      }
+    });
+  }
+
   reload(fastReload = false) {
     if (fastReload) {
+      debugger;
       if (this.date)
         this.todos = this.todos
-          .filter((t) => t.date == this.date)
+          .filter((t) => t.date.toString().split('T')[0] == this.date)
           .sort((a, b) => (a.date > b.date ? 1 : -1));
       else this.todos = this.todos.sort((a, b) => (a.date > b.date ? 1 : -1));
 
@@ -106,5 +107,6 @@ export class TodoListComponent implements OnInit {
     this.isCreating = false;
     this.todos = this.todos.filter((t) => t.id);
     this.todos.push(todo);
+    this.reload(true);
   }
 }

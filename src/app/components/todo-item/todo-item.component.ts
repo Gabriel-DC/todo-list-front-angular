@@ -34,7 +34,6 @@ export class TodoItemComponent implements OnInit {
 
   @Output() public deleteEvent = new EventEmitter();
   @Output() public createEvent = new EventEmitter();
-  @Output() public updateEvent = new EventEmitter();
   public isLoading = false;
 
   markAsDone(todo: TodoModel) {
@@ -111,7 +110,6 @@ export class TodoItemComponent implements OnInit {
                   this.todo = res.data;
                   this.editedTodo = res.data;
                   this.isInEditMode = false;
-                  this.updateEvent.emit(true);
                 },
               });
           }
@@ -134,7 +132,6 @@ export class TodoItemComponent implements OnInit {
               next: (res) => {
                 this.todo = res.data;
                 this.isInEditMode = false;
-                this.updateEvent.emit(true);
               },
             });
         }
