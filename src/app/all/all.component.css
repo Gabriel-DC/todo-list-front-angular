@@ -32,6 +32,7 @@ input {
 .filter-button:disabled {
     background-color: rgb(235, 176, 176);
     color: aliceblue;
+    cursor: default;
 }
 
 .filter-button:focus {

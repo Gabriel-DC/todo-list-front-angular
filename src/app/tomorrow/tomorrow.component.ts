@@ -12,17 +12,29 @@ export class TomorrowComponent {
   constructor(
     private todoService: TodoService,
     private afAuth: AngularFireAuth
-  ) {}
-
-  public todos: TodoModel[] = [];
-
-  ngOnInit(): void {
-    this.afAuth.idToken.subscribe((token: any) => {
-      this.todoService
-        .getTomorrowTodos(token)
-        .subscribe((data: TodoModel[]) => {
-          this.todos = data;
-        });
-    });
+  ) {
+    let tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    this.tomorrow = new Date(
+      tomorrow.toLocaleDateString('en-US', {
+        timeZone: 'America/Sao_Paulo',
+      })
+    )
+      .toISOString()
+      .split('T')[0];
   }
+
+  public tomorrow!: string;
+
+  // public todos: TodoModel[] = [];
+
+  // ngOnInit(): void {
+  //   this.afAuth.idToken.subscribe((token: any) => {
+  //     this.todoService
+  //       .getTomorrowTodos(token)
+  //       .subscribe((data: TodoModel[]) => {
+  //         this.todos = data;
+  //       });
+  //   });
+  // }
 }

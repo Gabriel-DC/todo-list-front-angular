@@ -1,11 +1,1 @@
-<div *ngFor="let todo of todos">
-  <app-todo-item
-    (deleteEvent)="deleteTodo($event)"
-    (createEvent)="updateTodo($event)"
-    [todo]="todo"
-  ></app-todo-item>
-</div>
-<app-new-todo-button
-  *ngIf="!isCreating"
-  (newTodoEvent)="newTodo()"
-></app-new-todo-button>
+<app-todo-list [date]="today"></app-todo-list>

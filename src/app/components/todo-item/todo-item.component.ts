@@ -95,7 +95,7 @@ export class TodoItemComponent implements OnInit {
 
   onEditTodo() {
     let title = this.editedTodo.title.trim();
-    let date = this.editedTodo.date;
+    let date = new Date(this.editedTodo.date).toISOString();
     let isNew = !this.todo.id;
 
     if (title && date) {
@@ -124,7 +124,7 @@ export class TodoItemComponent implements OnInit {
               {
                 todoId: this.editedTodo.id,
                 title: this.editedTodo.title,
-                date: this.editedTodo.date,
+                date: date,
               },
               token
             )
