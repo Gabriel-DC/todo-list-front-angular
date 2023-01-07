@@ -12,7 +12,7 @@ input {
     padding: 0.2em 0.3em;
     box-sizing: border-box;
     font-size: 1em;
-    color: rgb(255, 107, 107);
+    color: blueviolet;
     font-weight: 800;
     border-radius: 0.3em;
     border: thin solid gray;
@@ -24,13 +24,14 @@ input {
     font-size: 1em;
     padding: 0.8em 0.5em;
     border-radius: 0.3em;
-    background-color: rgb(255, 107, 107);
+    background-color: blueviolet;
     color: aliceblue;
     cursor: pointer;
 }
 
 .filter-button:disabled {
-    background-color: rgb(235, 176, 176);
+    background-color: blueviolet;
+    filter: brightness(0.6);
     color: aliceblue;
     cursor: default;
 }
