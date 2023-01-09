@@ -93,12 +93,12 @@ export class TodoListComponent implements OnInit {
 
   newTodo() {
     this.isCreating = true;
-    const date = new Date(this.date.toString());
+    const date = new Date(this.date ? this.date.toString() : new Date());
 
     this.todos.push({
       id: '',
       title: '',
-      date: new Date(date.getFullYear(), date.getMonth(), date.getDate() + 1), //new Date(this.date.toString()).toISOString(),
+      date: new Date(date.getFullYear(), date.getMonth(), date.getDate() + 1),
       done: false,
     });
   }
