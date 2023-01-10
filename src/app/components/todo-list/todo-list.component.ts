@@ -56,7 +56,10 @@ export class TodoListComponent implements OnInit {
         this.todos = this.todos
           .filter((t) => t.date.toString().split('T')[0] == this.date)
           .sort((a, b) => (a.date > b.date ? 1 : -1));
-      else this.todos = this.todos.sort((a, b) => (a.date > b.date ? 1 : -1));
+      else
+        this.todos = this.todos.sort((a, b) => {
+          return a.date > b.date ? 1 : -1;
+        });
 
       return;
     }
