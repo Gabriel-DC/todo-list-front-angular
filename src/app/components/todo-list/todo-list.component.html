@@ -1,12 +1,17 @@
-<div *ngFor="let todo of todos">
-  <app-todo-item
-    (deleteEvent)="deleteTodo($event)"
-    (createEvent)="updateTodo($event)"
-    (reloadEvent)="reload(true)"
-    [todo]="todo"
-  ></app-todo-item>
+<div style="position: relative">
+  <app-loader *ngIf="isLoading"></app-loader>
+  <ng-container *ngIf="!isLoading">
+    <div *ngFor="let todo of todos">
+      <app-todo-item
+        (deleteEvent)="deleteTodo($event)"
+        (createEvent)="updateTodo($event)"
+        (reloadEvent)="reload(true)"
+        [todo]="todo"
+      ></app-todo-item>
+    </div>
+    <app-new-todo-button
+      *ngIf="!isCreating"
+      (newTodoEvent)="newTodo()"
+    ></app-new-todo-button>
+  </ng-container>
 </div>
-<app-new-todo-button
-  *ngIf="!isCreating"
-  (newTodoEvent)="newTodo()"
-></app-new-todo-button>

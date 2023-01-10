@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { TodoModel } from 'src/app/models/todo';
 import { TodoService } from 'src/app/todo.service';
@@ -16,7 +16,9 @@ export class TodoListComponent implements OnInit {
 
   public todos: TodoModel[] = [];
   public isCreating = false;
+  public isLoading = true;
   @Input() public date!: string | Date;
+  @Output() public updateDateEvent = new EventEmitter();
 
   ngOnInit(): void {
     this.afAuth.idToken.subscribe((token: string | null) => {
@@ -26,26 +28,17 @@ export class TodoListComponent implements OnInit {
             .getAllTodosByDate(token, this.date.toString())
             .subscribe((data: TodoModel[]) => {
               this.todos = data;
+              this.isLoading = false;
             });
         else
           this.todoService.getAllTodos(token).subscribe((data: TodoModel[]) => {
             this.todos = data;
+            this.updateDateEvent.emit({
+              start: data[0]?.date,
+              end: data[data.length - 1]?.date,
+            });
+            this.isLoading = false;
           });
-    });
-  }
-
-  filter(filter: { startDate: string; endDate: string }): void {
-    this.afAuth.idToken.subscribe((token: string | null) => {
-      if (token) {
-        this.todoService
-          .getAllTodosByPeriod(token, {
-            startDate: filter.startDate.split('T')[0],
-            endDate: filter.endDate.split('T')[0],
-          })
-          .subscribe((data: TodoModel[]) => {
-            this.todos = data;
-          });
-      }
     });
   }
 

@@ -1,0 +1,32 @@
+
+.loader {
+  border: 16px solid floralwhite;
+  border-top: 16px solid blueviolet;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px #333;
+  min-width: 100px;
+  min-height: 100px;
+  position: absolute;
+  left: 40.5%;
+  padding: 24px;
+  transform: translate(-50%, 0);
+  z-index: 11;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.overlay {
+  background: #000;
+  height: 100%;
+  border-radius: 0.3em;
+  left: 0;
+  opacity: 0.5;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+}

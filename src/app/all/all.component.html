@@ -22,4 +22,7 @@
     Buscar
   </button>
 </div>
-<app-todo-list #todoList></app-todo-list>
+<app-todo-list
+  #todoList
+  (updateDateEvent)="getStartAndEndDate($event)"
+></app-todo-list>

@@ -20,6 +20,7 @@ import { AllComponent } from './all/all.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { NewTodoButtonComponent } from './components/new-todo-button/new-todo-button.component';
 import { TodoListComponent } from './components/todo-list/todo-list.component';
+import { LoaderComponent } from './components/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { TodoListComponent } from './components/todo-list/todo-list.component';
     ModalComponent,
     NewTodoButtonComponent,
     TodoListComponent,
+    LoaderComponent,
   ],
   imports: [
     BrowserModule,

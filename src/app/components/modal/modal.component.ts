@@ -24,7 +24,6 @@ import { trigger, style, animate, transition } from '@angular/animations';
 })
 export class ModalComponent {
   public isOpen: boolean = false;
-  public deleteEvent = new EventEmitter();
 
   toggle() {
     this.isOpen = !this.isOpen;

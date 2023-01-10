@@ -21,6 +21,7 @@ export class AllComponent {
   public endDate!: string;
 
   filter() {
+    this.todoListComponent.isLoading = true;
     this.afAuth.idToken.subscribe((token: any) => {
       if (token) {
         this.todoService
@@ -30,8 +31,14 @@ export class AllComponent {
           })
           .subscribe((data: TodoModel[]) => {
             this.todoListComponent.todos = data;
+            this.todoListComponent.isLoading = false;
           });
       }
     });
+  }
+
+  getStartAndEndDate($event: { start: string | Date; end: string | Date }) {
+    this.startDate = $event.start.toString();
+    this.endDate = $event.end.toString();
   }
 }
