@@ -25,16 +25,4 @@ export class TomorrowComponent {
   }
 
   public tomorrow!: string;
-
-  // public todos: TodoModel[] = [];
-
-  // ngOnInit(): void {
-  //   this.afAuth.idToken.subscribe((token: any) => {
-  //     this.todoService
-  //       .getTomorrowTodos(token)
-  //       .subscribe((data: TodoModel[]) => {
-  //         this.todos = data;
-  //       });
-  //   });
-  // }
 }

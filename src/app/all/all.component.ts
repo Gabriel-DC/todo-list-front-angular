@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { TodoListComponent } from './../components/todo-list/todo-list.component';
+import { Component, ViewChild } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { TodoModel } from '../models/todo';
 import { TodoService } from '../todo.service';
@@ -14,23 +15,12 @@ export class AllComponent {
     private afAuth: AngularFireAuth
   ) {}
 
-  public todos: TodoModel[] = [];
+  @ViewChild('todoList') todoListComponent!: TodoListComponent;
 
   public startDate!: string;
   public endDate!: string;
 
-  ngOnInit(): void {
-    // this.afAuth.idToken.subscribe((token: any) => {
-    //   this.todoService.getAllTodos(token).subscribe((data: TodoModel[]) => {
-    //     this.todos = data;
-    //     this.startDate = this.todos[0]?.date?.toString();
-    //     this.endDate = this.todos[this.todos.length - 1].date?.toString();
-    //   });
-    // });
-  }
-
   filter() {
-    console.log(this.startDate, this.endDate);
     this.afAuth.idToken.subscribe((token: any) => {
       if (token) {
         this.todoService
@@ -39,7 +29,7 @@ export class AllComponent {
             endDate: this.endDate.split('T')[0],
           })
           .subscribe((data: TodoModel[]) => {
-            this.todos = data;
+            this.todoListComponent.todos = data;
           });
       }
     });
