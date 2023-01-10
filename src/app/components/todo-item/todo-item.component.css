@@ -70,7 +70,9 @@
 }
 
 .edit-title-input {
-    width: 100%;
+    justify-self: flex-start;
+    width: 50%;
+    margin-right: auto;
     padding: 0.5em;
     border: none;
     border-bottom: 1px solid black;
