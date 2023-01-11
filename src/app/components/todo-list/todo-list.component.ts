@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { TodoModel } from 'src/app/models/todo';
 import { TodoService } from 'src/app/todo.service';
@@ -8,7 +15,7 @@ import { TodoService } from 'src/app/todo.service';
   templateUrl: './todo-list.component.html',
   styleUrls: ['./todo-list.component.css'],
 })
-export class TodoListComponent implements OnInit {
+export class TodoListComponent implements AfterViewInit {
   constructor(
     private todoService: TodoService,
     private afAuth: AngularFireAuth
@@ -20,7 +27,7 @@ export class TodoListComponent implements OnInit {
   @Input() public date!: string | Date;
   @Output() public updateDateEvent = new EventEmitter();
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     this.afAuth.idToken.subscribe((token: string | null) => {
       if (token)
         if (this.date)
