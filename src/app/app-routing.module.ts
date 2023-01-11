@@ -1,10 +1,10 @@
-import { AllComponent } from './all/all.component';
-import { TomorrowComponent } from './tomorrow/tomorrow.component';
+import { AllComponent } from './pages/all/all.component';
+import { TomorrowComponent } from './pages/tomorrow/tomorrow.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
-import { TodayComponent } from './today/today.component';
+import { HomeComponent } from './pages/home/home.component';
+import { LoginComponent } from './pages/login/login.component';
+import { TodayComponent } from './pages/today/today.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },

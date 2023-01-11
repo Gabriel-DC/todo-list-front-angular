@@ -1,8 +1,8 @@
-import { TodoListComponent } from './../components/todo-list/todo-list.component';
+import { TodoListComponent } from '../../components/todo-list/todo-list.component';
 import { Component, ViewChild } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { TodoModel } from '../models/todo';
-import { TodoService } from '../todo.service';
+import { TodoModel } from '../../models/todo';
+import { TodoService } from '../../todo.service';
 
 @Component({
   selector: 'app-all',
