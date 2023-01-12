@@ -110,6 +110,14 @@ export class CalendarComponent implements OnInit {
       1
     ).getDay();
 
+    const lastDayOfMonth = new Date(
+      this.year,
+      this.months.indexOf(this.currentMonth) + 1,
+      0
+    ).getDay();
+
+    console.log(daysInCurrentMonth);
+
     for (let i = 0; i < firstDayOfWeek; i++) {
       this.days.push({});
     }
@@ -119,6 +127,13 @@ export class CalendarComponent implements OnInit {
         date: i,
       });
     }
+
+    for (let i = 7; i > lastDayOfMonth; i--) {
+      console.log(lastDayOfMonth);
+      console.log(i);
+      this.days.push({});
+    }
+
     this.loading = false;
   }
 }

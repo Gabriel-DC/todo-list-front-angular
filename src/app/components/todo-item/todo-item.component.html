@@ -46,14 +46,12 @@
       name="done_{{ todo.id }}"
       id="doneInput_{{ todo.id }}"
     />
-    <h4 [ngClass]="{ done: todo.done }" class="todo-title mb-0">
+    <h5 [ngClass]="{ done: todo.done }" class="todo-title mb-0">
       <label for="doneInput_{{ todo.id }}">
         {{ todo.title }}
       </label>
-    </h4>
-    <small class="todo-date">{{
-      todo.date | date : "dd/MM/yyyy H:mm:ss"
-    }}</small>
+    </h5>
+    <p class="todo-date">{{ todo.date | date: "dd/MM/yyyy" }}</p>
     <button (click)="startEdit()" class="btn-edit" type="button">
       <img
         class="img-trash"

@@ -2,6 +2,7 @@
   class="edit-date-input"
   [(ngModel)]="selectedDateString"
   (click)="openCalendar(calendar)"
+  readonly
   [disabled]="disabled"
 />
 <ng-template #calendar>

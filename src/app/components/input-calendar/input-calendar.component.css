@@ -5,6 +5,8 @@
   border-bottom: 1px solid black;
   outline: none;
   background-color: transparent;
+  user-select: none;
+  cursor: pointer;
 }
 
 .edit-date-input:focus {
