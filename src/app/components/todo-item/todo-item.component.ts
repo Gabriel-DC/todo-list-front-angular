@@ -28,8 +28,6 @@ export class TodoItemComponent implements OnInit {
       this.startEdit();
       return;
     }
-
-    this.editedTodo.date = new Date();
   }
 
   @ViewChild('titleInput', { static: false }) input!: ElementRef;
@@ -154,7 +152,6 @@ export class TodoItemComponent implements OnInit {
   }
 
   startEdit() {
-    this.editedTodo = this.todo;
     this.isInEditMode = true;
     setTimeout(() => {
       this.input.nativeElement.focus();

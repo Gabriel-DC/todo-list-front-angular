@@ -10,6 +10,10 @@ body {
   background-color: #333 !important;
 }
 
+p {
+  margin-bottom: 0 !important;
+}
+
 .container {
   width: 70%;
   padding: 0.2em;
