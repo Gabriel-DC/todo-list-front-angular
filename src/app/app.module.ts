@@ -1,26 +1,29 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { HomeComponent } from './pages/home/home.component';
-import { UserCardComponent } from './components/user-card/user-card.component';
-import { TabsComponent } from './components/tabs/tabs.component';
-import { LoginComponent } from './pages/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { environment } from 'src/environments/environment.prod';
-import { TodayComponent } from './pages/today/today.component';
-import { TodoItemComponent } from './components/todo-item/todo-item.component';
-import { TomorrowComponent } from './pages/tomorrow/tomorrow.component';
-import { AllComponent } from './pages/all/all.component';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { CalendarComponent } from './components/calendar/calendar.component';
+import { InputCalendarComponent } from './components/input-calendar/input-calendar.component';
+import { LoaderComponent } from './components/loader/loader.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { NewTodoButtonComponent } from './components/new-todo-button/new-todo-button.component';
+import { TabsComponent } from './components/tabs/tabs.component';
+import { TodoItemComponent } from './components/todo-item/todo-item.component';
 import { TodoListComponent } from './components/todo-list/todo-list.component';
-import { LoaderComponent } from './components/loader/loader.component';
+import { UserCardComponent } from './components/user-card/user-card.component';
+import { AllComponent } from './pages/all/all.component';
+import { HomeComponent } from './pages/home/home.component';
+import { LoginComponent } from './pages/login/login.component';
+import { TodayComponent } from './pages/today/today.component';
+import { TomorrowComponent } from './pages/tomorrow/tomorrow.component';
 
 @NgModule({
   declarations: [
@@ -37,8 +40,11 @@ import { LoaderComponent } from './components/loader/loader.component';
     NewTodoButtonComponent,
     TodoListComponent,
     LoaderComponent,
+    CalendarComponent,
+    InputCalendarComponent,
   ],
   imports: [
+    NgbModule,
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,

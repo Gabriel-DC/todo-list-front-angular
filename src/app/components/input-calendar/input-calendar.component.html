@@ -1,0 +1,15 @@
+<input
+  class="edit-date-input"
+  [(ngModel)]="selectedDateString"
+  (click)="openCalendar(calendar)"
+  [disabled]="disabled"
+/>
+<ng-template #calendar>
+  <app-calendar
+    (dateSelected)="setSelectedDate($event)"
+    [year]="year"
+    [month]="month"
+    [day]="day"
+  >
+  </app-calendar>
+</ng-template>

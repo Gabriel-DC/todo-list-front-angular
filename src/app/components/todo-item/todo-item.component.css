@@ -1,98 +1,112 @@
 .todo-item {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 0.7em;
-    background-color: floralwhite;
-    margin: 0.3em 0;
-    border-radius: 0.3em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.7em;
+  background-color: floralwhite;
+  margin: 0.3em 0;
+  border-radius: 0.3em;
 }
 
 .todo-title {
-    margin-right: auto;
-    margin-left: 0.2em;
+  margin-right: auto;
+  margin-left: 0.2em;
 }
 
 .done {
-    text-decoration: line-through;
-    opacity: 0.5;
+  text-decoration: line-through;
+  opacity: 0.5;
 }
 
 .btn-excluir {
-    border: none;
-    padding: 0.3em;
-    margin-left: 1em;
-    background-color: brown;
-    border-radius: 0.3em;
-    cursor: pointer;
+  border: none;
+  padding: 0.3em;
+  margin-left: 1em;
+  background-color: brown;
+  border-radius: 0.3em;
+  cursor: pointer;
 }
 
 .btn-edit {
-    border: none;
-    padding: 0.3em;
-    margin-left: 1em;
-    background-color: blueviolet;
-    border-radius: 0.3em;
-    cursor: pointer;
+  border: none;
+  padding: 0.3em;
+  margin-left: 1em;
+  background-color: blueviolet;
+  border-radius: 0.3em;
+  cursor: pointer;
 }
 
 .btn-excluir {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .img-trash {
-    filter: brightness(0) invert(1);
+  filter: brightness(0) invert(1);
 }
 
 .btn-modal {
-    border: none;
-    padding: 0.7em 2em;
-    border-radius: 0.3em;
-    color: aliceblue;
-    cursor: pointer;
+  border: none;
+  padding: 0.7em 2em;
+  border-radius: 0.3em;
+  color: aliceblue;
+  cursor: pointer;
 }
 .div-btn-modal {
-    margin: 1em 0em;
-    display: flex;
-    justify-content: space-around;
+  margin: 1em 0em;
+  display: flex;
+  justify-content: space-around;
 }
 
 #btn-yes {
-    background-color: brown;
+  background-color: brown;
 }
 
 #btn-no {
-    background-color: gray;
+  background-color: gray;
 }
 
 #modal {
-    user-select: none;
+  user-select: none;
 }
 
 .edit-title-input {
-    justify-self: flex-start;
-    width: 50%;
-    margin-right: auto;
-    padding: 0.5em;
-    border: none;
-    border-bottom: 1px solid black;
-    outline: none;
-    background-color: transparent;
+  width: 100%;
+  margin-right: 2rem;
+  padding: 0.5em;
+  border: none;
+  border-bottom: 1px solid black;
+  outline: none;
+  background-color: transparent;
 }
 
 .edit-title-input:focus {
-    border-bottom: 1px solid blueviolet;
+  border-bottom: 1px solid blueviolet;
 }
 
-.edit-date-input {
-    width: 30%;
-    padding: 0.5em;
-    border: none;
-    border-bottom: 1px solid black;
-    outline: none;
-    background-color: transparent;
+.calendar-input {
+  width: 30%;
 }
 
-.edit-date-input:focus {
-    border-bottom: 1px solid blueviolet;
+@media (max-width: 768px) {
+  .calendar-input {
+    width: 40%;
+  }
+}
+
+@media (max-width: 576px) {
+  .calendar-input {
+    width: 50%;
+  }
+}
+
+@media (max-width: 500px) {
+  .calendar-input {
+    width: 70%;
+  }
+}
+
+@media (max-width: 400px) {
+  .calendar-input {
+    width: 100%;
+  }
 }

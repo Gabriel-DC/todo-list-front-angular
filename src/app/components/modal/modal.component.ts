@@ -1,5 +1,5 @@
-import { Component, EventEmitter } from '@angular/core';
-import { trigger, style, animate, transition } from '@angular/animations';
+import { animate, style, transition, trigger } from '@angular/animations';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-modal',
