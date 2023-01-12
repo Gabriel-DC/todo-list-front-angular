@@ -1,5 +1,3 @@
-import { ModalComponent } from './../modal/modal.component';
-import { TodoModel } from './../../models/todo';
 import {
   Component,
   ElementRef,
@@ -9,8 +7,10 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import { TodoService } from 'src/app/todo.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { TodoService } from 'src/app/todo.service';
+import { TodoModel } from './../../models/todo';
+import { ModalComponent } from './../modal/modal.component';
 
 @Component({
   selector: 'app-todo-item',
@@ -24,7 +24,12 @@ export class TodoItemComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     this.editedTodo = { ...this.todo };
-    if (!this.todo.id) this.startEdit();
+    if (!this.todo.id) {
+      this.startEdit();
+      return;
+    }
+
+    this.editedTodo.date = new Date();
   }
 
   @ViewChild('titleInput', { static: false }) input!: ElementRef;
@@ -149,6 +154,7 @@ export class TodoItemComponent implements OnInit {
   }
 
   startEdit() {
+    this.editedTodo = this.todo;
     this.isInEditMode = true;
     setTimeout(() => {
       this.input.nativeElement.focus();

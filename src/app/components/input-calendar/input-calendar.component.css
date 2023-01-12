@@ -1,0 +1,12 @@
+.edit-date-input {
+  width: 100%;
+  padding: 0.5em;
+  border: none;
+  border-bottom: 1px solid black;
+  outline: none;
+  background-color: transparent;
+}
+
+.edit-date-input:focus {
+  border-bottom: 1px solid blueviolet;
+}

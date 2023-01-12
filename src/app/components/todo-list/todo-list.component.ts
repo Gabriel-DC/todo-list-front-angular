@@ -50,7 +50,6 @@ export class TodoListComponent implements AfterViewInit {
 
   reload(fastReload = false) {
     if (fastReload) {
-      debugger;
       if (this.date)
         this.todos = this.todos
           .filter((t) => t.date.toString().split('T')[0] == this.date)

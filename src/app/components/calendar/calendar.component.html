@@ -1,0 +1,34 @@
+<div class="calendar" *ngIf="!loading">
+  <div class="calendar-header">
+    <button (click)="previousMonth()">Anterior</button>
+    <div class="calendar-date">{{ currentMonth }} {{ year }}</div>
+    <button (click)="nextMonth()">Próximo</button>
+  </div>
+  <div class="calendar-body">
+    <div class="calendar-weekday-header">
+      <div class="calendar-weekday">Dom</div>
+      <div class="calendar-weekday">Seg</div>
+      <div class="calendar-weekday">Ter</div>
+      <div class="calendar-weekday">Qua</div>
+      <div class="calendar-weekday">Qui</div>
+      <div class="calendar-weekday">Sex</div>
+      <div class="calendar-weekday">Sab</div>
+    </div>
+    <div class="d-flex flex-wrap">
+      <div
+        class="calendar-day"
+        *ngFor="let day of days"
+        [class.disabled]="!day.date"
+        [ngClass]="{
+          selected:
+            selectedDate.getDate() === day.date &&
+            selectedDate.getMonth() === months.indexOf(currentMonth) &&
+            selectedDate.getFullYear() === year
+        }"
+        (click)="selectDate(day)"
+      >
+        {{ day.date }}
+      </div>
+    </div>
+  </div>
+</div>

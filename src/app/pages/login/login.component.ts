@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { Router, TitleStrategy } from '@angular/router';
+import { Router } from '@angular/router';
 import * as auth from 'firebase/auth';
 
 @Component({
@@ -19,7 +19,6 @@ export class LoginComponent {
     this.afAuth
       .signInWithPopup(new auth.GoogleAuthProvider())
       .then((data) => {
-        debugger;
         if (data.user !== null) this.router.navigate(['/']);
       })
       .catch((err) => console.log(err));

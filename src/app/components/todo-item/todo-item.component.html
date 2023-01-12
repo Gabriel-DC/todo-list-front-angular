@@ -12,32 +12,30 @@
       name="title_{{ todo.id }}"
       id="titleInput_{{ todo.id }}"
     />
-    <input
-      class="edit-date-input"
-      type="datetime"
-      (keyup.enter)="onEditTodo()"
-      (keyup.escape)="onCancelEdit()"
-      [ngModel]="editedTodo.date | date : 'yyyy-MM-ddTHH:mm:ss'"
-      (ngModelChange)="editedTodo.date = $event"
-      name="date_{{ todo.id }}"
-      id="dateInput_{{ todo.id }}"
-    />
-    <button (click)="onEditTodo()" class="btn-edit" type="button">
-      <img
-        class="img-trash"
-        width="20"
-        src="../../../assets/save.png"
-        alt="Salvar"
-      />
-    </button>
-    <button (click)="onCancelEdit()" class="btn-excluir" type="button">
-      <img
-        class="img-trash"
-        width="20"
-        src="../../../assets/cancel.png"
-        alt="Cancelar"
-      />
-    </button>
+
+    <app-input-calendar
+      [(date)]="editedTodo.date"
+      class="calendar-input"
+    ></app-input-calendar>
+
+    <div class="d-flex flex-row">
+      <button (click)="onEditTodo()" class="btn-edit" type="button">
+        <img
+          class="img-trash"
+          width="20"
+          src="../../../assets/save.png"
+          alt="Salvar"
+        />
+      </button>
+      <button (click)="onCancelEdit()" class="btn-excluir" type="button">
+        <img
+          class="img-trash"
+          width="20"
+          src="../../../assets/cancel.png"
+          alt="Cancelar"
+        />
+      </button>
+    </div>
   </ng-container>
   <ng-container *ngIf="!isInEditMode">
     <input
@@ -48,7 +46,7 @@
       name="done_{{ todo.id }}"
       id="doneInput_{{ todo.id }}"
     />
-    <h4 [ngClass]="{ done: todo.done }" class="todo-title">
+    <h4 [ngClass]="{ done: todo.done }" class="todo-title mb-0">
       <label for="doneInput_{{ todo.id }}">
         {{ todo.title }}
       </label>
