@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Component({
@@ -6,15 +6,9 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
   templateUrl: './user-card.component.html',
   styleUrls: ['./user-card.component.css'],
 })
-export class UserCardComponent implements OnInit {
+export class UserCardComponent implements AfterViewInit {
   constructor(private afAuth: AngularFireAuth) {}
-
-  public user: any = {
-    name: '',
-    picture: 'https://via.placeholder.com/150',
-  };
-
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     this.afAuth.user.subscribe((data) => {
       if (data) {
         this.user.name = data.displayName;
@@ -22,6 +16,11 @@ export class UserCardComponent implements OnInit {
       }
     });
   }
+
+  public user: any = {
+    name: '',
+    picture: 'https://via.placeholder.com/150',
+  };
 
   logout() {
     this.afAuth.signOut();
