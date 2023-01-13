@@ -8,6 +8,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { firstValueFrom } from 'rxjs';
 import { TodoService } from 'src/app/todo.service';
 import { TodoModel } from './../../models/todo';
 import { ModalComponent } from './../modal/modal.component';
@@ -40,50 +41,46 @@ export class TodoItemComponent implements OnInit {
   @Output() public reloadEvent = new EventEmitter();
   public isLoading = false;
 
-  markAsDone(todo: TodoModel) {
-    this.afAuth.idToken.subscribe({
-      next: (token) => {
-        const data = { todoId: todo.id };
-        if (token)
-          this.todoService.markAsDone(data, token).subscribe({
-            next: () => {
-              todo.done = true;
-              this.isLoading = false;
-            },
-            error: () => {
-              todo.done = false;
-              this.isLoading = false;
-            },
-          });
-      },
-      error: () => {
-        todo.done = false;
-        this.isLoading = false;
-      },
-    });
+  async markAsDone(todo: TodoModel) {
+    let token = await firstValueFrom(this.afAuth.idToken);
+
+    const data = { todoId: todo.id };
+    if (token) {
+      this.todoService.markAsDone(data, token).subscribe({
+        next: () => {
+          todo.done = true;
+          this.isLoading = false;
+        },
+        error: () => {
+          todo.done = false;
+          this.isLoading = false;
+        },
+      });
+      return;
+    }
+
+    this.isLoading = false;
   }
 
-  markAsUndone(todo: TodoModel) {
-    this.afAuth.idToken.subscribe({
-      next: (token) => {
-        if (token) {
-          const data = { todoId: todo.id };
-          this.todoService.markAsUndone(data, token).subscribe({
-            next: () => {
-              todo.done = false;
-              this.isLoading = false;
-            },
-            error: () => {
-              todo.done = true;
-              this.isLoading = false;
-            },
-          });
-        } else this.isLoading = false;
-      },
-      error: () => {
-        this.isLoading = false;
-      },
-    });
+  async markAsUndone(todo: TodoModel) {
+    let token = await firstValueFrom(this.afAuth.idToken);
+
+    if (token) {
+      const data = { todoId: todo.id };
+      this.todoService.markAsUndone(data, token).subscribe({
+        next: () => {
+          todo.done = false;
+          this.isLoading = false;
+        },
+        error: () => {
+          todo.done = true;
+          this.isLoading = false;
+        },
+      });
+      return;
+    }
+
+    this.isLoading = false;
   }
 
   onCheckChange(todo: TodoModel) {
@@ -97,50 +94,49 @@ export class TodoItemComponent implements OnInit {
     modal.toggle();
   }
 
-  onEditTodo() {
+  async onEditTodo() {
     let title = this.editedTodo.title.trim();
     let date = new Date(this.editedTodo.date).toISOString();
     let isNew = !this.todo.id;
 
+    let token = await firstValueFrom(this.afAuth.idToken);
+
     if (title && date) {
       if (isNew) {
-        this.afAuth.idToken.subscribe((token) => {
-          if (token) {
-            this.todoService
-              .postTodo({ title: title, date: date }, token)
-              .subscribe({
-                next: (res) => {
-                  this.createEvent.emit(res.data);
-                  this.todo = res.data;
-                  this.editedTodo = res.data;
-                  this.isInEditMode = false;
-                },
-              });
-          }
-        });
-        return;
-      }
-
-      this.afAuth.idToken.subscribe((token) => {
         if (token) {
           this.todoService
-            .updateTodo(
-              {
-                todoId: this.editedTodo.id,
-                title: this.editedTodo.title,
-                date: date,
-              },
-              token
-            )
+            .postTodo({ title: title, date: date }, token)
             .subscribe({
               next: (res) => {
+                this.createEvent.emit(res.data);
                 this.todo = res.data;
+                this.editedTodo = res.data;
                 this.isInEditMode = false;
-                this.reloadEvent.emit();
               },
             });
         }
-      });
+
+        return;
+      }
+
+      if (token) {
+        this.todoService
+          .updateTodo(
+            {
+              todoId: this.editedTodo.id,
+              title: this.editedTodo.title,
+              date: date,
+            },
+            token
+          )
+          .subscribe({
+            next: (res) => {
+              this.todo = res.data;
+              this.isInEditMode = false;
+              this.reloadEvent.emit();
+            },
+          });
+      }
     }
   }
 

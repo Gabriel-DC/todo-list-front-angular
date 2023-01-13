@@ -6,6 +6,7 @@ import {
   Output,
 } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { firstValueFrom } from 'rxjs';
 import { TodoModel } from 'src/app/models/todo';
 import { TodoService } from 'src/app/todo.service';
 
@@ -27,28 +28,32 @@ export class TodoListComponent implements AfterViewInit {
   @Output() public updateDateEvent = new EventEmitter();
 
   ngAfterViewInit(): void {
-    this.afAuth.idToken.subscribe((token: string | null) => {
-      if (token)
-        if (this.date)
-          this.todoService
-            .getAllTodosByDate(token, this.date.toString())
-            .subscribe((data: TodoModel[]) => {
-              this.todos = data;
-              this.isLoading = false;
-            });
-        else
-          this.todoService.getAllTodos(token).subscribe((data: TodoModel[]) => {
-            this.todos = data;
-            this.updateDateEvent.emit({
-              start: data[0]?.date,
-              end: data[data.length - 1]?.date,
-            });
-            this.isLoading = false;
-          });
-    });
+    this.loaderComponent();
   }
 
-  reload(fastReload = false) {
+  async loaderComponent() {
+    let token = await firstValueFrom(this.afAuth.idToken);
+
+    if (token)
+      if (this.date)
+        this.todoService
+          .getAllTodosByDate(token, this.date.toString())
+          .subscribe((data: TodoModel[]) => {
+            this.todos = data;
+            this.isLoading = false;
+          });
+      else
+        this.todoService.getAllTodos(token).subscribe((data: TodoModel[]) => {
+          this.todos = data;
+          this.updateDateEvent.emit({
+            start: data[0]?.date,
+            end: data[data.length - 1]?.date,
+          });
+          this.isLoading = false;
+        });
+  }
+
+  async reload(fastReload = false) {
     if (fastReload) {
       if (this.date)
         this.todos = this.todos
@@ -62,34 +67,34 @@ export class TodoListComponent implements AfterViewInit {
       return;
     }
 
-    this.afAuth.idToken.subscribe((token: string | null) => {
-      if (token)
-        if (this.date)
-          this.todoService
-            .getAllTodosByDate(token, this.date.toString())
-            .subscribe((data: TodoModel[]) => {
-              this.todos = data;
-            });
-        else
-          this.todoService.getAllTodos(token).subscribe((data: TodoModel[]) => {
+    let token = await firstValueFrom(this.afAuth.idToken);
+
+    if (token)
+      if (this.date)
+        this.todoService
+          .getAllTodosByDate(token, this.date.toString())
+          .subscribe((data: TodoModel[]) => {
             this.todos = data;
           });
-    });
+      else
+        this.todoService.getAllTodos(token).subscribe((data: TodoModel[]) => {
+          this.todos = data;
+        });
   }
 
-  deleteTodo(todo: TodoModel) {
+  async deleteTodo(todo: TodoModel) {
     if (!todo.id) {
       this.todos = this.todos.filter((t) => t.id !== todo.id);
       this.isCreating = false;
       return;
     }
 
-    this.afAuth.idToken.subscribe((token: string | null) => {
-      if (token)
-        this.todoService.deleteTodo({ id: todo.id }, token).subscribe(() => {
-          this.todos = this.todos.filter((t) => t.id !== todo.id);
-        });
-    });
+    let token = await firstValueFrom(this.afAuth.idToken);
+
+    if (token)
+      this.todoService.deleteTodo({ id: todo.id }, token).subscribe(() => {
+        this.todos = this.todos.filter((t) => t.id !== todo.id);
+      });
   }
 
   newTodo() {
