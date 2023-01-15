@@ -153,23 +153,23 @@
   dependencies:
     "tslib" "^2.3.0"
 
-"@angular/compiler-cli@^15.0.0", "@angular/compiler-cli@15.0.2":
-  "integrity" "sha512-WZCULskbuoMA0iQ36H2nGgKj017JENR+wDnwuQ+/1ECtBN2PpjJiws/m5bntBzQe96w2fue6tOLh09WESQgRHw=="
-  "resolved" "https://registry.npmjs.org/@angular/compiler-cli/-/compiler-cli-15.0.2.tgz"
-  "version" "15.0.2"
+"@angular/compiler-cli@^15.0.0", "@angular/compiler-cli@15.1.0":
+  "integrity" "sha512-mKeXolM/plP9ebkHy3YGxHx0Yg63d09S0QCpdIcmvrbJpaPeM2D1SAkbDpO46T4BsfgfWHtSYByb5JcesrYrpQ=="
+  "resolved" "https://registry.npmjs.org/@angular/compiler-cli/-/compiler-cli-15.1.0.tgz"
+  "version" "15.1.0"
   dependencies:
-    "@babel/core" "^7.17.2"
+    "@babel/core" "7.19.3"
+    "@jridgewell/sourcemap-codec" "^1.4.14"
     "chokidar" "^3.0.0"
     "convert-source-map" "^1.5.1"
     "dependency-graph" "^0.11.0"
-    "magic-string" "^0.26.0"
+    "magic-string" "^0.27.0"
     "reflect-metadata" "^0.1.2"
     "semver" "^7.0.0"
-    "sourcemap-codec" "^1.4.8"
     "tslib" "^2.3.0"
     "yargs" "^17.2.1"
 
-"@angular/compiler@^15.0.0", "@angular/compiler@15.0.2":
+"@angular/compiler@^15.0.0", "@angular/compiler@15.0.2", "@angular/compiler@15.1.0":
   "integrity" "sha512-dD1Vv2txp09V7RaJK2tvGRWpM2RsDARVAGL65hfJY2txeEFRyajcle6jOI11NfGpgsZvptN7o5oc8ozQI1hgTA=="
   "resolved" "https://registry.npmjs.org/@angular/compiler/-/compiler-15.0.2.tgz"
   "version" "15.0.2"
@@ -214,9 +214,9 @@
     "tslib" "^2.3.0"
 
 "@angular/localize@^15.0.0", "@angular/localize@^15.0.2":
-  "integrity" "sha512-7qZcEl9ZscCwGzmCviUQvkeGyaH58xSrW7eZ2nQPVKCwU9DGLtSXd0xTqTe6nmjigO7BG0u4D2yt1c6/Q+X8yQ=="
-  "resolved" "https://registry.npmjs.org/@angular/localize/-/localize-15.0.2.tgz"
-  "version" "15.0.2"
+  "integrity" "sha512-BTEBMKqS4F8lK4rIsydRsxMbQ1hFnDZTZoifT33dmmOworWFJCGryYw0ZCTkeBtCnkRGgnr1aOTIHTvJPFIMiA=="
+  "resolved" "https://registry.npmjs.org/@angular/localize/-/localize-15.1.0.tgz"
+  "version" "15.1.0"
   dependencies:
     "@babel/core" "7.19.3"
     "glob" "8.0.3"
@@ -260,7 +260,7 @@
   "resolved" "https://registry.npmjs.org/@babel/compat-data/-/compat-data-7.20.5.tgz"
   "version" "7.20.5"
 
-"@babel/core@^7.0.0", "@babel/core@^7.0.0-0", "@babel/core@^7.12.0", "@babel/core@^7.12.3", "@babel/core@^7.13.0", "@babel/core@^7.17.2", "@babel/core@^7.4.0-0", "@babel/core@7.20.2":
+"@babel/core@^7.0.0", "@babel/core@^7.0.0-0", "@babel/core@^7.12.0", "@babel/core@^7.12.3", "@babel/core@^7.13.0", "@babel/core@^7.4.0-0", "@babel/core@7.20.2":
   "integrity" "sha512-w7DbG8DtMrJcFOi4VrLm+8QM4az8Mo+PuLBKLp2zrYRCow8W/f9xiXm5sN53C8HksCyDQwCKha9JiDoIyPjT2g=="
   "resolved" "https://registry.npmjs.org/@babel/core/-/core-7.20.2.tgz"
   "version" "7.20.2"
@@ -1668,7 +1668,7 @@
     "@jridgewell/gen-mapping" "^0.3.0"
     "@jridgewell/trace-mapping" "^0.3.9"
 
-"@jridgewell/sourcemap-codec@^1.4.10", "@jridgewell/sourcemap-codec@1.4.14":
+"@jridgewell/sourcemap-codec@^1.4.10", "@jridgewell/sourcemap-codec@^1.4.13", "@jridgewell/sourcemap-codec@^1.4.14", "@jridgewell/sourcemap-codec@1.4.14":
   "integrity" "sha512-XPSJHWmi394fuUuzDnGz1wiKqWfo1yXecHQMRf2l6hztTO+nPru658AyDngaBe7isIxEkRsPR3FZh+s7iVa4Uw=="
   "resolved" "https://registry.npmjs.org/@jridgewell/sourcemap-codec/-/sourcemap-codec-1.4.14.tgz"
   "version" "1.4.14"
@@ -4274,9 +4274,7 @@
   "version" "1.0.0"
 
 "json5@^2.1.2", "json5@^2.2.1":
-  "integrity" "sha512-XmOWe7eyHYH14cLdVPoyg+GOH3rYX++KpzrylJwSW98t3Nk+U8XOl8FWKOgwtzdb8lXGf6zYwDUzeHMWfxasyg=="
-  "resolved" "https://registry.npmjs.org/json5/-/json5-2.2.3.tgz"
-  "version" "2.2.3"
+  "version" "2.2.1"
 
 "jsonc-parser@^3.0.0", "jsonc-parser@3.2.0":
   "integrity" "sha512-gfFQZrcTc8CnKXp6Y4/CBT3fTc0OVuDofpre4aEeEpSBPV5X5v4+Vmx+8snU7RLPrNHPKSgLxGo9YuQzz20o+w=="
@@ -4524,7 +4522,14 @@
   "resolved" "https://registry.npmjs.org/lru-cache/-/lru-cache-7.14.1.tgz"
   "version" "7.14.1"
 
-"magic-string@^0.26.0", "magic-string@0.26.7":
+"magic-string@^0.27.0":
+  "integrity" "sha512-8UnnX2PeRAPZuN12svgR9j7M1uWMovg/CEnIwIG0LFkXSJJe4PdfUGiTGl8V9bsBHFUtfVINcSyYxd7q+kx9fA=="
+  "resolved" "https://registry.npmjs.org/magic-string/-/magic-string-0.27.0.tgz"
+  "version" "0.27.0"
+  dependencies:
+    "@jridgewell/sourcemap-codec" "^1.4.13"
+
+"magic-string@0.26.7":
   "integrity" "sha512-hX9XH3ziStPoPhJxLq1syWuZMxbDvGNbVchfrdCtanC7D13888bMFow61x8axrx+GfHLtVeAx2kxL7tTGRl+Ow=="
   "resolved" "https://registry.npmjs.org/magic-string/-/magic-string-0.26.7.tgz"
   "version" "0.26.7"
@@ -6338,7 +6343,7 @@
   "resolved" "https://registry.npmjs.org/typed-assert/-/typed-assert-1.0.9.tgz"
   "version" "1.0.9"
 
-"typescript@>=4.8.2 <4.9", "typescript@~4.8.2":
+"typescript@>=4.8.2 <5.0", "typescript@~4.8.2":
   "integrity" "sha512-QCh+85mCy+h0IGff8r5XWzOVSbBO+KfeYrMQh7NJ58QujwcE22u+NUSmUxqF+un70P9GXKxa2HCNiTTMJknyjQ=="
   "resolved" "https://registry.npmjs.org/typescript/-/typescript-4.8.4.tgz"
   "version" "4.8.4"

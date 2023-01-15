@@ -1,3 +1,4 @@
+import { TodoService } from 'src/app/todo.service';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -54,7 +55,7 @@ import { TomorrowComponent } from './pages/tomorrow/tomorrow.component';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
   ],
-  providers: [],
+  providers: [TodoService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

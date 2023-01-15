@@ -1,5 +1,7 @@
+import { firstValueFrom } from 'rxjs';
 import { AfterViewInit, Component } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { getIdToken } from 'firebase/auth';
 
 @Component({
   selector: 'app-user-card',
@@ -9,12 +11,13 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 export class UserCardComponent implements AfterViewInit {
   constructor(private afAuth: AngularFireAuth) {}
   ngAfterViewInit(): void {
-    this.afAuth.user.subscribe((data) => {
-      if (data) {
-        this.user.name = data.displayName;
-        this.user.picture = data.photoURL;
-      }
-    });
+    this.getUserInfo();
+  }
+
+  async getUserInfo() {
+    let user = await firstValueFrom(this.afAuth.user);
+    this.user.name = user?.displayName;
+    this.user.picture = user?.photoURL;
   }
 
   public user: any = {

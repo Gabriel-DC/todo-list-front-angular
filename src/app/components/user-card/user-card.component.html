@@ -1,5 +1,10 @@
 <div class="user-card">
-  <img src="{{ user.picture }}" class="user-image" alt="{{ user.name }}" />
+  <img
+    src="{{ user.picture }}"
+    referrerpolicy="no-referrer"
+    class="user-image"
+    alt="{{ user.name }}"
+  />
   <h4 class="username">{{ user.name }}</h4>
   <small><a (click)="logout()">SAIR</a></small>
 </div>
