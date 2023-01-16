@@ -5,6 +5,10 @@
     class="user-image"
     alt="{{ user.name }}"
   />
-  <h4 class="username">{{ user.name }}</h4>
+  <div class="username">
+    <h4>{{ user.name }}</h4>
+    <p>{{ user.email }}</p>
+  </div>
+
   <small><a (click)="logout()">SAIR</a></small>
 </div>
