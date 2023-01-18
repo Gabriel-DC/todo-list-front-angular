@@ -6,7 +6,6 @@ import { TodoService } from '../../todo.service';
 @Component({
   selector: 'app-tomorrow',
   templateUrl: './tomorrow.component.html',
-  styleUrls: ['./tomorrow.component.css'],
 })
 export class TomorrowComponent {
   constructor(
